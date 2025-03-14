@@ -56,12 +56,15 @@ namespace Prn212
             householdMember.Relationship = txtRelationship.Text;
 
             _context.SaveChanges();
+            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_SUCCESS, _context);
             MessageBox.Show("Update Successfull");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-           this.Close();
+            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_FAIL, _context);
+
+            this.Close();
         }
     }
 }

@@ -43,7 +43,16 @@ namespace Prn212
                     Relationship = relationText
                 };
 
+                _context.HouseholdMembers.Add(houseHoldMember);
+                _context.SaveChanges();
+                Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_SUCCESS, _context);
+
+
                 MessageBox.Show("Successfull");
+            }
+            else
+            {
+                Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_FAIL, _context);
             }
         }
 
