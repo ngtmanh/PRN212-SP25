@@ -19,7 +19,7 @@ namespace Prn212
     /// <summary>
     /// Interaction logic for ManageMember.xaml
     /// </summary>
-    public partial class ManageMember : Window
+    public partial class ManageMember : UserControl
     {
         private readonly Prn212Context _context;
         public ManageMember()
@@ -45,7 +45,7 @@ namespace Prn212
             if (selectItem != null)
             {
                 AddMember addMember = new AddMember();
-                addMember.houseHoldId = (int)selectItem.HouseholdId;
+                addMember.houseHoldId = (int)selectItem.HouseholdId;              
                 addMember.ShowDialog();
                 loadData();
             }
@@ -65,7 +65,7 @@ namespace Prn212
             {
                 int memberId = (int)selectItem.MemberId;
                 UpdateMember updateMember = new UpdateMember(memberId);
-                updateMember.ShowDialog();
+//                updateMember.ShowDialog();
                 loadData();
             }
             else

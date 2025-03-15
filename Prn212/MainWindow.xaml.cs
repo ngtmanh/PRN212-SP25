@@ -20,5 +20,10 @@ namespace Prn212
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ManageMember();
+        }
     }
 }
