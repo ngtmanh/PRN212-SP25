@@ -1,0 +1,72 @@
+﻿<Window x:Class="Prn212.ManageMember"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prn212"
+        mc:Ignorable="d"
+        Title="ManageMember" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Search Bar -->
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <Label Content="Tìm kiếm:"
+                   VerticalAlignment="Center" />
+            <TextBox x:Name="SearchBox"
+                     Width="200"
+                     Margin="5,0" />
+            <Button Content="Tìm"
+                    Width="75"
+                    Click="SearchButton_Click" />
+        </StackPanel>
+
+        <!-- DataGrid for Residents -->
+        <DataGrid x:Name="ResidentsDataGrid"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding MemberId}"
+                                    Width="50" />
+                <DataGridTextColumn Header="Full Name"
+                                    Binding="{Binding User.FullName}"
+                                    Width="100" />
+                <DataGridTextColumn Header="Address"
+                                    Binding="{Binding User.Address}"
+                                    Width="100" />
+                <DataGridTextColumn Header="Head of household"
+                                    Binding="{Binding User.FullName}"
+                                    Width="150" />
+                <DataGridTextColumn Header="Relationship"
+                                    Binding="{Binding Relationship}"
+                                    Width="150" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- CRUD Buttons -->
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    Margin="10">
+            <Button Content="Add"
+                    Width="100"
+                    Margin="5"
+                    Click="AddButton_Click" />
+            <Button Content="Update"
+                    Width="100"
+                    Margin="5"
+                    Click="UpdateButton_Click" />
+            <Button Content="Delete"
+                    Width="100"
+                    Margin="5"
+                    Click="DeleteButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
