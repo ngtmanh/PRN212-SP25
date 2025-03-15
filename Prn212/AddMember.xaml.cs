@@ -69,7 +69,7 @@ namespace Prn212
             if (!int.TryParse(userIdText, out userId))
             {
                 MessageBox.Show("UserID is integer number");
-
+                
                 return false;
             }
             else

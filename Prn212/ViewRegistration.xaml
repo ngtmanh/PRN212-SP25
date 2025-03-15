@@ -1,0 +1,28 @@
+﻿<Window x:Class="Prn212.ViewRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prn212"
+        mc:Ignorable="d"
+        Title="ViewRegistration" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="registrationDataGrid" AutoGenerateColumns="False" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Registration Type" Binding="{Binding RegistrationType}" Width="*"/>
+                <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="*"/>
+                <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                <DataGridTextColumn Header="Approved By" Binding="{Binding ApprovedBy}" Width="*"/>
+                <DataGridTextColumn Header="Comments" Binding="{Binding Comments}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="btnAddRegistration" Content="Thêm đơn" Width="100" Margin="5" Click="BtnAddRegistration_Click"/>
+            <Button x:Name="btnViewDetail" Content="Xem thông tin" Width="100" Margin="5" Click="BtnViewDetail_Click"/>
+            <Button x:Name="btnBack" Content="Quay lại" Width="100" Margin="5" Click="BtnBack_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
