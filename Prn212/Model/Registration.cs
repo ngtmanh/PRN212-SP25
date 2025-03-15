@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Prn212.Models;
+namespace Prn212.Model;
 
 public partial class Registration
 {
@@ -10,6 +10,8 @@ public partial class Registration
     public int? UserId { get; set; }
 
     public string RegistrationType { get; set; } = null!;
+
+    public int? RegistrationDetailId { get; set; }
 
     public DateOnly StartDate { get; set; }
 
@@ -22,6 +24,8 @@ public partial class Registration
     public string? Comments { get; set; }
 
     public virtual User? ApprovedByNavigation { get; set; }
+
+    public virtual RegistrationDetail? RegistrationDetail { get; set; }
 
     public virtual User? User { get; set; }
 }
