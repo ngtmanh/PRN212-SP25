@@ -39,5 +39,12 @@ namespace Prn212
                 Application.Current.Shutdown(); // Thoát chương trình
             }
         }
+
+        private void BtnViewRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            ViewRegistration viewRegistration = new ViewRegistration(_currentUser);
+            viewRegistration.Show();
+            this.Close();
+        }
     }
 }

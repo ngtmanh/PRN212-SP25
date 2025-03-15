@@ -11,34 +11,106 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 using Prn212.Models;
 
 namespace Prn212
 {
     public partial class ViewRegistrationDetail : Window
     {
-        public ViewRegistrationDetail(object selectedRegistration)
+        private User _currentUser;
+        private Prn212Context context;
+        private Registration registration;
+        public ViewRegistrationDetail(object selectedRegistration, User user)
         {
             InitializeComponent();
+            _currentUser = user ?? throw new ArgumentNullException(nameof(user), "Người dùng không được null.");
+            registration = selectedRegistration as Registration ?? throw new ArgumentNullException(nameof(selectedRegistration), "Đăng ký không được null.");
+            context = new Prn212Context();
+            CheckUserPermissions();
             LoadRegistrationDetails(selectedRegistration);
         }
 
         private void LoadRegistrationDetails(object selectedRegistration)
         {
-            
-            dynamic registration = selectedRegistration;
+            if (selectedRegistration is Registration registration)
+            {
+                if (registration.RegistrationDetail == null)
+                {
+                    MessageBox.Show("Chi tiết đăng ký không tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-            txtRegistrationType.Text = registration.RegistrationType;
-            txtStartDate.Text = registration.StartDate.ToString();
-            txtStatus.Text = registration.Status;
-            txtIdentity.Text = registration.IdentityNumber;
-            txtResidence.Text = registration.ResidenceDocument;
-            txtDescription.Text = registration.Description;
-            txtComments.Text = registration.Comments ?? "No comments"; 
+                int registrationId = registration.RegistrationDetail.RegistrationDetailId;
+                var registrationDetail = context.Registrations
+                    .Include(r => r.RegistrationDetail)
+                    .FirstOrDefault(r => r.RegistrationDetail != null && r.RegistrationDetail.RegistrationDetailId == registrationId);
+
+                if (registrationDetail == null)
+                {
+                    MessageBox.Show("Không tìm thấy đăng ký trong cơ sở dữ liệu!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                txtRegistrationType.Text = registrationDetail.RegistrationType ?? "N/A";
+                txtStatus.Text = registrationDetail.Status ?? "N/A";
+                txtDescription.Text = registrationDetail.RegistrationDetail?.Description ?? "N/A";
+                txtComments.Text = registrationDetail.Comments ?? "N/A";
+                txtIdentity.Text = registrationDetail.RegistrationDetail?.VerifyingIdentity ?? "N/A";
+                txtResidence.Text = registrationDetail.RegistrationDetail?.VerifyingResidence ?? "N/A";
+            }
+            else
+            {
+                MessageBox.Show("Dữ liệu không hợp lệ!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void CheckUserPermissions()
+        {
+            if (_currentUser.Role == "Citizen")
+            {
+                btnApprove.Visibility = Visibility.Collapsed;
+                btnReject.Visibility = Visibility.Collapsed;
+            }
+
+            if (_currentUser.Role == "Police")
+            {
+                txtComments.IsReadOnly = false;
+            }
+        }
+
+        private void BtnApprove_Click(object sender, RoutedEventArgs e)
+        {
+            var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+            rg.Comments = txtComments.Text;
+            rg.ApprovedBy = _currentUser.UserId;
+            rg.Status = "Approved";
+            context.SaveChanges();
+
+            MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            ViewRegistration vr = new ViewRegistration(_currentUser);
+            vr.Show();
+            this.Close();
+
+        }
+
+        private void BtnReject_Click(object sender, RoutedEventArgs e)
+        {
+            var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+            rg.Comments = txtComments.Text;
+            rg.ApprovedBy = _currentUser.UserId;
+            rg.Status = "Reject";
+            context.SaveChanges();
+
+            MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            ViewRegistration vr = new ViewRegistration(_currentUser);
+            vr.Show();
             this.Close();
         }
     }

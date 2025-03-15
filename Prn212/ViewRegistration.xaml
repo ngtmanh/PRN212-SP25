@@ -10,17 +10,17 @@
         <DataGrid x:Name="registrationDataGrid" AutoGenerateColumns="False" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Registration Type" Binding="{Binding RegistrationId}" Width="*"/>
                 <DataGridTextColumn Header="Registration Type" Binding="{Binding RegistrationType}" Width="*"/>
                 <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="*"/>
-                <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="*"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="Approved By" Binding="{Binding ApprovedBy}" Width="*"/>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Comments}" Width="*"/>
-                <DataGridTextColumn Header="RegistrationDetail" Binding="{Binding RegistrationDetail}" Width="*"/>
+                <DataGridTextColumn Header="RegistrationDetail" Binding="{Binding RegistrationDetail.RegistrationDetailId}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">            
             <Button x:Name="btnAddRegistration" Content="Thêm đơn" Width="100" Margin="5" Click="BtnAddRegistration_Click"/>
             <Button x:Name="btnViewDetail" Content="Xem thông tin" Width="100" Margin="5" Click="BtnViewDetail_Click"/>
             <Button x:Name="btnBack" Content="Quay lại" Width="100" Margin="5" Click="BtnBack_Click"/>

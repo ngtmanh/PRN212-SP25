@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 using Prn212.Models;
 
 namespace Prn212
@@ -30,29 +31,23 @@ namespace Prn212
             using (var context = new Prn212Context())
             {
                 var registrations = context.Registrations
-                    .Select(r => new
-                    {
-                        r.RegistrationType,
-                        r.StartDate,
-                        r.EndDate,
-                        r.Status,
-                        ApprovedBy = r.ApprovedByNavigation.FullName,
-                        r.Comments,
-                        RegistrationDetail = r.RegistrationDetail.RegistrationDetailId,
-                        IdentityNumber = r.RegistrationDetail.VerifyingIdentity,
-                        ResidenceDocument = r.RegistrationDetail.VerifyingResidence,
-                        Description = r.RegistrationDetail.Description,
-                    }).ToList();
+                    .Include(r => r.RegistrationDetail)
+                    .AsQueryable();
 
-                registrationDataGrid.ItemsSource = registrations;
+                if (_currentUser.Role == "Citizen")
+                {
+                    registrations = registrations.Where(r => r.UserId == _currentUser.UserId);
+                }
+
+                registrationDataGrid.ItemsSource = registrations.ToList();
             }
         }
         private void BtnViewDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (registrationDataGrid.SelectedItem is Object selectedRegistration)
+            if (registrationDataGrid.SelectedItem is Registration selectedRegistration)
             {
-                ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(selectedRegistration);
-                detailWindow.ShowDialog(); 
+                ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(selectedRegistration, _currentUser);
+                detailWindow.ShowDialog();
             }
             else
             {
@@ -63,9 +58,20 @@ namespace Prn212
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            CitizenWindow citizenWindow = new CitizenWindow(_currentUser);
-            citizenWindow.Show();
-            this.Close();
+            if (_currentUser.Role == "Citizen")
+            {
+                CitizenWindow citizenWindow = new CitizenWindow(_currentUser);
+                citizenWindow.Show();
+                this.Close();
+            }
+
+            if (_currentUser.Role == "Police")
+            {
+                PoliceWindow policeWindow = new PoliceWindow(_currentUser);
+                policeWindow.Show();
+                this.Close();
+            }
+
         }
 
         private void BtnAddRegistration_Click(object sender, RoutedEventArgs e)

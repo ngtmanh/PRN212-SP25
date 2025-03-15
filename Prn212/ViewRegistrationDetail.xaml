@@ -13,7 +13,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -25,24 +24,23 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Registration Type:"/>
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtRegistrationType" IsReadOnly="True" Margin="5"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Start Date:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtStartDate" IsReadOnly="True" Margin="5"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Status:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtStatus" IsReadOnly="True" Margin="5"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Status:"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtStatus" IsReadOnly="True" Margin="5"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Identity number:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtIdentity" IsReadOnly="True" Margin="5"/>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Identity number:"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtIdentity" IsReadOnly="True" Margin="5"/>
-        
-        <Label Grid.Row="4" Grid.Column="0" Content="Residence document:"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtResidence" IsReadOnly="True" Margin="5"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Residence document:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtResidence" IsReadOnly="True" Margin="5"/>
 
-        <Label Grid.Row="6" Grid.Column="0" Content="Description:"/>
-        <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtDescription" IsReadOnly="True" Margin="5"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Description:"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtDescription" IsReadOnly="True" Margin="5"/>
 
-        <Label Grid.Row="5" Grid.Column="0" Content="Comments:"/>
-        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtComments" IsReadOnly="True" Margin="5" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Comments:"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtComments" IsReadOnly="True" Margin="5" TextWrapping="Wrap" AcceptsReturn="True"/>
 
-        <Button Grid.Row="7" Grid.Column="1" x:Name="btnClose" Content="Đóng" Width="100" Margin="5" HorizontalAlignment="Right" Click="BtnClose_Click"/>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="btnClose" Content="Đóng" Width="100" Margin="5" HorizontalAlignment="Right" Click="BtnClose_Click"/>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="btnApprove" Content="Duyệt" Width="100" Margin="28,5,0,5" HorizontalAlignment="Left" Click="BtnApprove_Click"/>
+        <Button Grid.Row="6" x:Name="btnReject" Content="Từ chối" Width="100" Margin="141,5,0,5" HorizontalAlignment="Left"  Grid.Column="1" Click="BtnReject_Click"/>
     </Grid>
 </Window>
