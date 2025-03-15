@@ -7,12 +7,24 @@
         mc:Ignorable="d"
         Title="AddRegistration" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="Chọn loại đăng ký:" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbRegistrationType" Width="200" Height="25" Margin="10,40,0,0" VerticalAlignment="Top"/>
+        <StackPanel Margin="20">
+            <TextBlock Text="Registration Type:" />
+            <ComboBox x:Name="cmbRegistrationType">
+                <ComboBoxItem Content="Permanent" />
+                <ComboBoxItem Content="Temporary" />
+                <ComboBoxItem Content="TemporaryStay" />
+            </ComboBox>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,100,0,0">
-            <Button x:Name="btnSubmit" Content="Thêm Đơn" Width="100" Height="30" Click="BtnSubmit_Click" Margin="10"/>
-            <Button x:Name="btnCancel" Content="Hủy" Width="100" Height="30" Click="BtnCancel_Click" Margin="10"/>
+            <TextBlock Text="Description:" />
+            <TextBox x:Name="txtDescription" />
+
+            <TextBlock Text="Verifying Identity:" />
+            <TextBox x:Name="txtVerifyingIdentity" />
+
+            <TextBlock Text="Verifying Residence:" />
+            <TextBox x:Name="txtVerifyingResidence" />
+
+            <Button Content="Submit" Click="BtnSubmit_Click" />
         </StackPanel>
     </Grid>
 </Window>

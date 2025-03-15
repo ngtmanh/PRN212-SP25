@@ -17,53 +17,55 @@ namespace Prn212
 {
     public partial class AddRegistration : Window
     {
-        private int _userId;
-        public AddRegistration(int userId)
+        private User _currentUser;
+        private Prn212Context context = new Prn212Context();
+        public AddRegistration(User user)
         {
             InitializeComponent();
-            _userId = userId;
-            LoadRegistrationTypes();
-        }
-
-        private void LoadRegistrationTypes()
-        {
-            cmbRegistrationType.ItemsSource = new List<string>
-        {
-            "Permanent",
-            "Temporary",
-            "TemporaryStay"
-        };
+            _currentUser = user;
         }
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string selectedType = cmbRegistrationType.SelectedItem as string;
-            if (string.IsNullOrEmpty(selectedType))
+            string selectedType = ((ComboBoxItem)cmbRegistrationType.SelectedItem).Content.ToString();
+            string description = txtDescription.Text;
+            string verifyingIdentity = txtVerifyingIdentity.Text;
+            string verifyingResidence = txtVerifyingResidence.Text;
+
+            // Tạo RegistrationDetail trước
+            var registrationDetail = new RegistrationDetail
             {
-                MessageBox.Show("Vui lòng chọn loại đăng ký.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+                Description = description,
+                VerifyingIdentity = verifyingIdentity,
+                VerifyingResidence = verifyingResidence
+            };
+            context.RegistrationDetails.Add(registrationDetail);
+            context.SaveChanges();
+            
+            // Lấy RegistrationDetailId mới
+            int registrationDetailId = registrationDetail.RegistrationDetailId;
 
-            using (var context = new Prn212Context())
+            // Tạo đơn đăng ký
+            var newRegistration = new Registration
             {
-                Registration newRegistration = new Registration
-                {
-                    UserId = _userId,
-                    RegistrationType = selectedType,
-                    StartDate = DateOnly.FromDateTime(DateTime.Now),
-                    Status = "Pending"
-                };
-
-                context.Registrations.Add(newRegistration);
-                context.SaveChanges();
-            }
-
-            MessageBox.Show("Đăng ký thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                UserId = _currentUser.UserId,
+                RegistrationType = selectedType,
+                RegistrationDetailId = registrationDetailId,
+                StartDate = DateOnly.FromDateTime(DateTime.Now),
+                Status = "Pending"
+            };
+            context.Registrations.Add(newRegistration);
+            context.SaveChanges();
+            
+            MessageBox.Show("Registration added successfully!");
+            ViewRegistration viewReg = new ViewRegistration(_currentUser);
+            viewReg.Show();
             this.Close();
         }
-
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
+            ViewRegistration viewReg = new ViewRegistration(_currentUser);
+            viewReg.Show();
             this.Close();
         }
     }

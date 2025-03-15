@@ -38,18 +38,25 @@ namespace Prn212
                         r.Status,
                         ApprovedBy = r.ApprovedByNavigation.FullName,
                         r.Comments,
-                        r.RegistrationDetailId
+                        RegistrationDetail = r.RegistrationDetail.RegistrationDetailId,
+                        IdentityNumber = r.RegistrationDetail.VerifyingIdentity,
+                        ResidenceDocument = r.RegistrationDetail.VerifyingResidence,
+                        Description = r.RegistrationDetail.Description,
                     }).ToList();
 
                 registrationDataGrid.ItemsSource = registrations;
             }
         }
-
         private void BtnViewDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (registrationDataGrid.SelectedItem is Registration selectedRegistration)
+            if (registrationDataGrid.SelectedItem is Object selectedRegistration)
             {
-                
+                ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(selectedRegistration);
+                detailWindow.ShowDialog(); 
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một đơn đăng ký!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -63,7 +70,7 @@ namespace Prn212
 
         private void BtnAddRegistration_Click(object sender, RoutedEventArgs e)
         {
-            AddRegistration add = new AddRegistration(_currentUser.UserId);
+            AddRegistration add = new AddRegistration(_currentUser);
             add.Show();
             this.Close();
         }

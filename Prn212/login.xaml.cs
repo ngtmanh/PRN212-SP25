@@ -49,6 +49,12 @@ namespace Prn212
                     citizenWindow.Show();
                 }
 
+                if (user.Role == "Police")
+                {
+                    PoliceWindow citizenWindow = new PoliceWindow(user);
+                    citizenWindow.Show();
+                }
+
                 this.Close();
             }
             else
