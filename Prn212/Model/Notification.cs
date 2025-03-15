@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Prn212.Models;
+namespace Prn212.Model;
 
 public partial class Notification
 {

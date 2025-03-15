@@ -1,4 +1,4 @@
-﻿using Prn212.Models;
+﻿using Prn212.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Prn212.Resource
 {
     class Resoure
     {
-        public static void saveLog (int userId, String action, Prn212Context _context)
+        public static void saveLog (int userId, String action, Prn212Sp25Context _context)
         {
             Log log = new Log();
             log.UserId = userId;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Prn212.Models;
+using Prn212.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +22,12 @@ namespace Prn212
     /// </summary>
     public partial class UpdateMember : Window
     {
-        private readonly Prn212Context _context;
+        private readonly Prn212Sp25Context _context;
 
         public HouseholdMember householdMember { get; set; }
         public UpdateMember(int menberId)
         {
-            _context = new Prn212Context();
+            _context = new Prn212Sp25Context();
             InitializeComponent();
             loadData(menberId);
         }
