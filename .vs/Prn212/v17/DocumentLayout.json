@@ -3,52 +3,15 @@
   "WorkspaceRootPath": "E:\\SPRING25\\PRN212\\PRN212-SP25\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\viewregistrationdetail.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\viewregistrationdetail.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\citizenprofile.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\citizenprofile.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\TMP\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\citizenprofile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\citizenprofile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\citizenwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\citizenwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\citizenwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\citizenwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\register.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\register.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\register.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\register.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\managemember.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\managemember.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\models\\prn212context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\models\\prn212context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 114,
+          "SelectedChildIndex": 109,
           "Children": [
             {
               "$type": "Bookmark",
@@ -115,10 +78,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -493,154 +452,48 @@
               "Name": "ST:34:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CitizenProfile.xaml",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenProfile.xaml",
-              "RelativeDocumentMoniker": "Prn212\\CitizenProfile.xaml",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenProfile.xaml",
-              "RelativeToolTip": "Prn212\\CitizenProfile.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T04:57:14.805Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CitizenWindow.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\CitizenWindow.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenWindow.xaml.cs",
-              "RelativeToolTip": "Prn212\\CitizenWindow.xaml.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAvwB0AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:56:24.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CitizenWindow.xaml",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenWindow.xaml",
-              "RelativeDocumentMoniker": "Prn212\\CitizenWindow.xaml",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenWindow.xaml",
-              "RelativeToolTip": "Prn212\\CitizenWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T04:48:46.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\MainWindow.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Prn212\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:21:26.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Register.xaml",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Register.xaml",
-              "RelativeDocumentMoniker": "Prn212\\Register.xaml",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Register.xaml",
-              "RelativeToolTip": "Prn212\\Register.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T04:39:32.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.xaml",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\App.xaml",
-              "RelativeDocumentMoniker": "Prn212\\App.xaml",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\App.xaml",
-              "RelativeToolTip": "Prn212\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T04:26:05.741Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "login.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\login.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\login.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\login.xaml.cs",
-              "RelativeToolTip": "Prn212\\login.xaml.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAYwDMAAAAdAAAAAAAAAA==",
+              "Title": "ViewRegistrationDetail.xaml.cs",
+              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ViewRegistrationDetail.xaml.cs",
+              "RelativeDocumentMoniker": "Prn212\\ViewRegistrationDetail.xaml.cs",
+              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ViewRegistrationDetail.xaml.cs*",
+              "RelativeToolTip": "Prn212\\ViewRegistrationDetail.xaml.cs*",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACMAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:18:45.893Z",
+              "WhenOpened": "2025-03-15T08:32:57.704Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CitizenProfile.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenProfile.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\CitizenProfile.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenProfile.xaml.cs",
-              "RelativeToolTip": "Prn212\\CitizenProfile.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAA0wDcAAABGAAAAAAAAAA==",
+              "Title": "ResourcePart.cs",
+              "DocumentMoniker": "D:\\TMP\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
+              "ToolTip": "D:\\TMP\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [Read Only]",
+              "ViewState": "AgIAABcAAAAAAAAAAIA6wCcAAAAEAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:57:58.78Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T08:32:47.855Z",
+              "EditorCaption": " [Read Only]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Prn212\\Models\\User.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Models\\User.cs",
-              "RelativeToolTip": "Prn212\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Prn212Context.cs",
+              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Models\\Prn212Context.cs",
+              "RelativeDocumentMoniker": "Prn212\\Models\\Prn212Context.cs",
+              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Models\\Prn212Context.cs",
+              "RelativeToolTip": "Prn212\\Models\\Prn212Context.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:23:54.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Register.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Register.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\Register.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Register.xaml.cs",
-              "RelativeToolTip": "Prn212\\Register.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:39:50.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ManageMember.xaml.cs",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ManageMember.xaml.cs",
-              "RelativeDocumentMoniker": "Prn212\\ManageMember.xaml.cs",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ManageMember.xaml.cs",
-              "RelativeToolTip": "Prn212\\ManageMember.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADwvxsAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T04:19:23.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Login.xaml",
-              "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Login.xaml",
-              "RelativeDocumentMoniker": "Prn212\\Login.xaml",
-              "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Login.xaml",
-              "RelativeToolTip": "Prn212\\Login.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-15T04:17:34.099Z",
+              "WhenOpened": "2025-03-15T08:29:38.041Z",
               "EditorCaption": ""
             }
           ]

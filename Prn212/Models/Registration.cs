@@ -21,7 +21,11 @@ public partial class Registration
 
     public string? Comments { get; set; }
 
+    public int? RegistrationDetailId { get; set; }
+
     public virtual User? ApprovedByNavigation { get; set; }
+
+    public virtual RegistrationDetail? RegistrationDetail { get; set; }
 
     public virtual User? User { get; set; }
 }
