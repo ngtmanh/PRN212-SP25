@@ -57,7 +57,7 @@ public partial class Prn212Context : DbContext
 
         modelBuilder.Entity<HouseholdMember>(entity =>
         {
-            entity.HasKey(e => e.MemberId).HasName("PK__Househol__0CF04B3829889C7D");
+            entity.HasKey(e => e.MemberId).HasName("PK__Househol__0CF04B3813730425");
 
             entity.Property(e => e.MemberId).HasColumnName("MemberID");
             entity.Property(e => e.HouseholdId).HasColumnName("HouseholdID");
@@ -66,11 +66,11 @@ public partial class Prn212Context : DbContext
 
             entity.HasOne(d => d.Household).WithMany(p => p.HouseholdMembers)
                 .HasForeignKey(d => d.HouseholdId)
-                .HasConstraintName("FK__Household__House__46E78A0C");
+                .HasConstraintName("FK__Household__House__619B8048");
 
             entity.HasOne(d => d.User).WithMany(p => p.HouseholdMembers)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Household__UserI__47DBAE45");
+                .HasConstraintName("FK__Household__UserI__628FA481");
         });
 
         modelBuilder.Entity<Log>(entity =>
@@ -107,10 +107,11 @@ public partial class Prn212Context : DbContext
 
         modelBuilder.Entity<Registration>(entity =>
         {
-            entity.HasKey(e => e.RegistrationId).HasName("PK__Registra__6EF588300237E7CC");
+            entity.HasKey(e => e.RegistrationId).HasName("PK__Registra__6EF588305C7B8E6B");
 
             entity.Property(e => e.RegistrationId).HasColumnName("RegistrationID");
             entity.Property(e => e.RegistrationType).HasMaxLength(50);
+            entity.Property(e => e.StartDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasDefaultValue("Pending");
@@ -118,28 +119,22 @@ public partial class Prn212Context : DbContext
 
             entity.HasOne(d => d.ApprovedByNavigation).WithMany(p => p.RegistrationApprovedByNavigations)
                 .HasForeignKey(d => d.ApprovedBy)
-                .HasConstraintName("FK__Registrat__Appro__440B1D61");
+                .HasConstraintName("FK__Registrat__Appro__5EBF139D");
 
             entity.HasOne(d => d.RegistrationDetail).WithMany(p => p.Registrations)
                 .HasForeignKey(d => d.RegistrationDetailId)
-                .HasConstraintName("FK__Registrat__Regis__5441852A");
+                .HasConstraintName("FK__Registrat__Regis__59FA5E80");
 
             entity.HasOne(d => d.User).WithMany(p => p.RegistrationUsers)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Registrat__UserI__4316F928");
+                .HasConstraintName("FK__Registrat__UserI__5DCAEF64");
         });
 
         modelBuilder.Entity<RegistrationDetail>(entity =>
         {
-            entity.HasKey(e => e.RegistrationDetailId).HasName("PK__Registra__159E25341CC7643E");
+            entity.HasKey(e => e.RegistrationDetailId).HasName("PK__Registra__159E253481F84597");
 
             entity.ToTable("RegistrationDetail");
-
-            entity.Property(e => e.HouseholdId).HasColumnName("HouseholdID");
-
-            entity.HasOne(d => d.Household).WithMany(p => p.RegistrationDetails)
-                .HasForeignKey(d => d.HouseholdId)
-                .HasConstraintName("FK__Registrat__House__534D60F1");
         });
 
         modelBuilder.Entity<User>(entity =>

@@ -20,7 +20,7 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
-            <Button x:Name="btnAddRegistration" Content="Thêm đơn" Width="100" Margin="5"/>
+            <Button x:Name="btnAddRegistration" Content="Thêm đơn" Width="100" Margin="5" Click="BtnAddRegistration_Click"/>
             <Button x:Name="btnViewDetail" Content="Xem thông tin" Width="100" Margin="5" Click="BtnViewDetail_Click"/>
             <Button x:Name="btnBack" Content="Quay lại" Width="100" Margin="5" Click="BtnBack_Click"/>
         </StackPanel>

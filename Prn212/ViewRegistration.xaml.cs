@@ -49,9 +49,7 @@ namespace Prn212
         {
             if (registrationDataGrid.SelectedItem is Registration selectedRegistration)
             {
-                int registrationDetailId = selectedRegistration.RegistrationDetailId ?? 0;
-                ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(registrationDetailId);
-                detailWindow.Show();
+                
             }
 
         }
@@ -60,6 +58,13 @@ namespace Prn212
         {
             CitizenWindow citizenWindow = new CitizenWindow(_currentUser);
             citizenWindow.Show();
+            this.Close();
+        }
+
+        private void BtnAddRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            AddRegistration add = new AddRegistration(_currentUser.UserId);
+            add.Show();
             this.Close();
         }
     }
