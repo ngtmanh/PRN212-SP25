@@ -7,6 +7,89 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Định nghĩa bố cục -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <!-- Thanh menu trên -->
+            <RowDefinition Height="*" />
+            <!-- Nội dung chính -->
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <!-- Sidebar -->
+            <ColumnDefinition Width="*" />
+            <!-- Nội dung chính -->
+        </Grid.ColumnDefinitions>
+
+        <!-- 🚀 Thanh menu trên -->
+        <Border Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Background="#2C3E50"
+                Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="🏠 Hệ thống quản lý hộ khẩu"
+                           Foreground="White"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="10" />
+            </StackPanel>
+        </Border>
+
+        <!-- 🚀 Sidebar bên trái -->
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Background="White"
+                Padding="10">
+            <StackPanel>
+                <TextBlock Text="📂 Danh mục chức năng"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Margin="0 10" />
+
+                <Button Content="👥 Quản lý cư dân"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14"
+                        Click="Button_Click" />
+                <Button Content="📝 Đăng ký trực tuyến"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14" />
+                <Button Content="✅ Xác nhận và Phê duyệt"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14" />
+                <Button Content="📦 Chuyển và Tách hộ khẩu"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14" />
+                <Button Content="📢 Thông báo"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14" />
+                <Button Content="📊 Báo cáo và Thống kê"
+                        Margin="0 5"
+                        Padding="10"
+                        FontSize="14" />
+            </StackPanel>
+        </Border>
+
+        <!-- 🚀 Nội dung chính (Để trống, bạn có thể thêm nội dung sau) -->
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Background="White"
+              Margin="10">
+            <TextBlock Text="Chọn một chức năng từ menu bên trái"
+                       FontSize="18"
+                       Foreground="Gray"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" />
+        </Grid>
     </Grid>
+
 </Window>

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Prn212.Resource
 {
-    public static class Resource
+    class Resoure
     {
-        public static void saveLog (int userId, String action, Prn212Context _context)
+        public static void saveLog(int userId, String action, Prn212Context _context)
         {
             Log log = new Log();
             log.UserId = userId;

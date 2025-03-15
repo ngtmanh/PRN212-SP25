@@ -77,5 +77,4 @@
                     Click="CancelButton_Click" />
         </StackPanel>
     </Grid>
-
 </Window>
