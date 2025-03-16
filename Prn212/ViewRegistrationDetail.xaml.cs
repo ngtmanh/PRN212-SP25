@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using Prn212.Models;
 
 namespace Prn212
@@ -57,7 +59,6 @@ namespace Prn212
                 txtDescription.Text = registrationDetail.RegistrationDetail?.Description ?? "N/A";
                 txtComments.Text = registrationDetail.Comments ?? "N/A";
                 txtIdentity.Text = registrationDetail.RegistrationDetail?.VerifyingIdentity ?? "N/A";
-                txtResidence.Text = registrationDetail.RegistrationDetail?.VerifyingResidence ?? "N/A";
             }
             else
             {
@@ -68,6 +69,8 @@ namespace Prn212
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            ViewRegistration vr = new ViewRegistration(_currentUser);
+            vr.Show();
             this.Close();
         }
 
@@ -95,9 +98,9 @@ namespace Prn212
             context.SaveChanges();
 
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-            ViewRegistration vr = new ViewRegistration(_currentUser);
-            vr.Show();
             this.Close();
+            ViewRegistration vr = new ViewRegistration(_currentUser);
+            vr.Show();           
 
         }
 
@@ -111,9 +114,41 @@ namespace Prn212
             context.SaveChanges();
 
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-            ViewRegistration vr = new ViewRegistration(_currentUser);
-            vr.Show();
             this.Close();
+            ViewRegistration vr = new ViewRegistration(_currentUser);
+            vr.Show();            
+        }
+
+        private void BtnDownload_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(registration.RegistrationDetail?.ResidenceFileName?.ToString()))
+            {
+                MessageBox.Show("Không có file nào để tải xuống.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Lấy RegistrationDetailId từ database
+            int registrationDetailId = registration.RegistrationDetail.RegistrationDetailId; // Cần lấy ID của bản ghi đang chọn
+            var registrationDetail = context.RegistrationDetails.FirstOrDefault(rd => rd.RegistrationDetailId == registrationDetailId);
+
+            if (registrationDetail == null || registrationDetail.ResidenceFileData == null)
+            {
+                MessageBox.Show("Không tìm thấy file trong database!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Hộp thoại lưu file
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = registrationDetail.ResidenceFileName,
+                Filter = "All Files|*.*"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllBytes(saveFileDialog.FileName, registrationDetail.ResidenceFileData);
+                MessageBox.Show("Tải file thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

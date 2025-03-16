@@ -5,26 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="AddRegistration" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="20">
-            <TextBlock Text="Registration Type:" />
-            <ComboBox x:Name="cmbRegistrationType">
+        Title="Add Registration" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="#f4f4f4">
+
+    <Grid Margin="20">
+
+        <StackPanel>
+            <TextBlock Text="Registration Type:" FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+            <ComboBox x:Name="cmbRegistrationType" Height="30" Margin="0,5,0,10">
                 <ComboBoxItem Content="Permanent" />
                 <ComboBoxItem Content="Temporary" />
-                <ComboBoxItem Content="TemporaryStay" />
+                <ComboBoxItem Content="Temporary Stay" />
             </ComboBox>
 
-            <TextBlock Text="Description:" />
-            <TextBox x:Name="txtDescription" />
+            <TextBlock Text="Description:" FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+            <TextBox x:Name="txtDescription" Height="80" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,10"/>
 
-            <TextBlock Text="Verifying Identity:" />
-            <TextBox x:Name="txtVerifyingIdentity" />
+            <TextBlock Text="Verifying Identity:" FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+            <TextBox x:Name="txtVerifyingIdentity" Height="30" Margin="0,5,0,10"/>
 
-            <TextBlock Text="Verifying Residence:" />
-            <TextBox x:Name="txtVerifyingResidence" />
+            <TextBlock Text="Verifying Residence:" FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+            <TextBox x:Name="txtVerifyingResidence" Height="30" Margin="0,5,0,10"/>
 
-            <Button Content="Submit" Click="BtnSubmit_Click" />
+            <TextBlock Text="Residence documents:" FontSize="14" FontWeight="SemiBold" Foreground="#333"/>
+            <Button Content="Upload File" Width="150" Height="30" Click="BtnUpload_Click"/>
+            <TextBox x:Name="txtFileName" IsReadOnly="True" />
+            <Button Content="Submit" Width="100" Height="35" Background="#0078D7" Foreground="White" 
+                        FontWeight="Bold" BorderThickness="0" Click="BtnSubmit_Click"/>
         </StackPanel>
+
     </Grid>
 </Window>

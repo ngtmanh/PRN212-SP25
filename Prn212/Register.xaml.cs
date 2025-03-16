@@ -30,8 +30,14 @@ namespace Prn212
             string email = txtEmail.Text;
             string password = txtPassword.Password;
             string address = txtAddress.Text;
+            string repassword = txtRePassword.Password;
 
-            
+            if (!password.Equals(repassword))
+            {
+                MessageBox.Show("Mật khẩu xác thực không đúng, vui lòng thử lại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (_context.Users.Any(u => u.Email == email))
             {
                 MessageBox.Show("Email đã tồn tại, vui lòng chọn email khác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
