@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using Prn212.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace Prn212
 {
@@ -87,12 +91,24 @@ namespace Prn212
 
         private void BtnApprove_Click(object sender, RoutedEventArgs e)
         {
-            var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+            var rg = context.Registrations
+            .Include(r => r.User) // Đảm bảo tải thông tin User
+            .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
             rg.ApprovedByNavigation = _currentUser;
             rg.Status = "Approved";
             context.SaveChanges();
+            string? userEmail = rg.User?.Email;
+            if (!string.IsNullOrEmpty(userEmail))
+            {
+                SendConfirmationEmail(rg.RegistrationId, "Approved", userEmail, rg.Comments);
+                MessageBox.Show("Duyệt thành công! Email thông báo đã được gửi.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy email của công dân để gửi thông báo.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             ViewRegistration vr = new ViewRegistration(_currentUser);
@@ -103,17 +119,85 @@ namespace Prn212
 
         private void BtnReject_Click(object sender, RoutedEventArgs e)
         {
-            var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+            var rg = context.Registrations
+            .Include(r => r.User) // Đảm bảo tải thông tin User
+            .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
             rg.ApprovedByNavigation = _currentUser;
             rg.Status = "Rejected";
             context.SaveChanges();
+            string? userEmail = rg.User?.Email;
+            if (!string.IsNullOrEmpty(userEmail))
+            {
+                SendConfirmationEmail(rg.RegistrationId, "Rejected", userEmail, rg.Comments);
+                MessageBox.Show("Email thông báo đã được gửi.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy email của công dân để gửi thông báo.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             ViewRegistration vr = new ViewRegistration(_currentUser);
             vr.Show();
             this.Close();
+        }
+
+        private void SendConfirmationEmail(int registrationId, string status, string userEmail, string comments)
+        {
+            try
+            {
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("takhucthienbao@gmail.com", "rvin wacu cqrj wuhn"),
+                    EnableSsl = true,
+                };
+
+                string subject = $"Thông báo trạng thái đơn: {status}";
+                string body = $@"
+                    <html>
+                        <body>
+                            <h3>Thông báo từ hệ thống</h3>
+                            <p>Đơn đăng ký của bạn đã được xử lý!</p>
+                            <table border='1'>
+                                <tr>
+                                    <td>Mã đơn</td>
+                                    <td>{registrationId}</td>
+                                </tr>
+                                <tr>
+                                    <td>Trạng thái</td>
+                                    <td>{status}</td>
+                                </tr>
+                                <tr>
+                                    <td>Thời gian xử lý</td>
+                                    <td>{DateTime.Now.ToString("dd/MM/yyyy HH:mm")}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ghi chú</td>
+                                    <td>{comments}</td>
+                                </tr>
+                            </table>
+                            <p>Cảm ơn bạn đã sử dụng dịch vụ!</p>
+                        </body>
+                    </html>";
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("tathienbao2004@gmail.com"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true,
+                };
+                mailMessage.To.Add(userEmail);
+
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to send email: {ex.Message}");
+            }
         }
     }
 }
