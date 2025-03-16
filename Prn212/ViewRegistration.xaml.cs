@@ -23,25 +23,34 @@ namespace Prn212
         {
             InitializeComponent();
             _currentUser = user;
-            LoadRegistrations();
+            cbStatus.SelectedIndex = 0;
+            LoadRegistrations("All");
         }
 
-        private void LoadRegistrations()
+        private void LoadRegistrations(string status = null)
         {
             using (var context = new Prn212Context())
             {
                 var registrations = context.Registrations
                     .Include(r => r.RegistrationDetail)
+                    .Include(r => r.ApprovedByNavigation)
+                    .Include(r => r.User)
                     .AsQueryable();
-
-                if (_currentUser.Role == "Citizen")
+                if (!string.IsNullOrEmpty(status) && status != "All")
                 {
-                    registrations = registrations.Where(r => r.UserId == _currentUser.UserId);
+                    registrations = registrations.Where(r => r.Status == status);
+                }
+
+                if (_currentUser.Role == "Citizen" && !string.IsNullOrEmpty(status))
+                {
+                    registrations = registrations
+                        .Where(r => r.UserId == _currentUser.UserId);                        
                 }
 
                 registrationDataGrid.ItemsSource = registrations.ToList();
             }
         }
+
         private void BtnViewDetail_Click(object sender, RoutedEventArgs e)
         {
             if (registrationDataGrid.SelectedItem is Registration selectedRegistration)
@@ -79,6 +88,51 @@ namespace Prn212
             AddRegistration add = new AddRegistration(_currentUser);
             add.Show();
             this.Close();
+        }
+
+        private void CbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbStatus.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string selectedStatus = selectedItem.Content.ToString();
+                LoadRegistrations(selectedStatus);
+            }
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string status = (cbStatus.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string searchKey = txtSearch.Text.Trim();
+
+            using (var context = new Prn212Context())
+            {
+                var registrations = context.Registrations
+                    .Include(r => r.RegistrationDetail)
+                    .Include(r => r.ApprovedByNavigation)
+                    .Include(r => r.User)
+                    .AsQueryable();
+
+                
+                if (!string.IsNullOrEmpty(status) && status != "All")
+                {
+                    registrations = registrations.Where(r => r.Status == status);
+                }
+
+                
+                if (!string.IsNullOrEmpty(searchKey))
+                {
+                    registrations = registrations.Where(r => r.RegistrationDetail.VerifyingIdentity.Contains(searchKey));
+                }
+
+                
+                if (_currentUser.Role == "Citizen")
+                {
+                    registrations = registrations.Where(r => r.UserId == _currentUser.UserId);
+                }
+
+                registrationDataGrid.ItemsSource = registrations.ToList();
+            }
         }
     }
 

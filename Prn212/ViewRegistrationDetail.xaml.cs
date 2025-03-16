@@ -90,6 +90,7 @@ namespace Prn212
             var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
+            rg.ApprovedByNavigation = _currentUser;
             rg.Status = "Approved";
             context.SaveChanges();
 
@@ -105,7 +106,8 @@ namespace Prn212
             var rg = context.Registrations.FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
-            rg.Status = "Reject";
+            rg.ApprovedByNavigation = _currentUser;
+            rg.Status = "Rejected";
             context.SaveChanges();
 
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
