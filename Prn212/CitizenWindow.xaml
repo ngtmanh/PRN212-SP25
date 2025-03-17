@@ -5,13 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="CitizenWindow" Height="450" Width="800">
-    <Grid Margin="20">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="Dữ liệu cá nhân" Width="200" Height="40" Margin="10" Click="BtnProfile_Click"/>
-            <Button Content="Dữ liệu nơi ở" Width="200" Height="40" Margin="10"/>
-            <Button Content="Xem đơn" Width="200" Height="40" Margin="10" Click="BtnViewRegistration_Click"/>
-            <Button Content="Đăng xuất" Width="200" Height="40" Margin="10" Click="BtnLogout_Click"/>
+        Title="CitizenWindow" Height="400" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#F4F4F4" Margin="20">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+
+            <TextBlock Text="Danh Mục" FontSize="20" FontWeight="Bold" 
+                   Foreground="#2C3E50" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+             
+            <Button Content="👤 Dữ liệu cá nhân" Width="220" Height="45" FontSize="16"
+                Background="#3498DB" Foreground="White" Cursor="Hand"
+                BorderThickness="0" 
+                Click="BtnProfile_Click" Margin="5">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="🏡 Dữ liệu nơi ở" Width="220" Height="45" FontSize="16"
+                Background="#2ECC71" Foreground="White" Cursor="Hand"
+                BorderThickness="0" 
+                Click="BtnHouseHoldDetail_Click" Margin="5">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="📄 Xem đơn" Width="220" Height="45" FontSize="16"
+                Background="#2ECC71" Foreground="White" Cursor="Hand"
+                BorderThickness="0" 
+                Click="BtnViewRegistration_Click" Margin="5">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="➡ Đăng xuất" Width="220" Height="45" FontSize="16"
+                Background="#E74C3C" Foreground="White" Cursor="Hand"
+                BorderThickness="0" 
+                Click="BtnLogout_Click" Margin="5">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

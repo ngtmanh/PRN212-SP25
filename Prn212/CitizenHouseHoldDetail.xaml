@@ -1,0 +1,40 @@
+﻿<Window x:Class="Prn212.CitizenHouseHoldDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prn212"
+        mc:Ignorable="d"
+        Title="CitizenHouseHoldDetail" Height="450" Width="800">
+    <Grid Background="#F4F4F4" Margin="20">
+        <StackPanel>
+            <TextBlock Text="🏠 Hộ Gia Đình" FontSize="20" FontWeight="Bold" Foreground="#3498DB" />
+
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="🔹 Mã hộ:" FontWeight="Bold" />
+                <TextBox x:Name="txtHouseHoldId" IsReadOnly="True" FontSize="14" />
+
+                <TextBlock Text="📍 Địa chỉ:" FontWeight="Bold" />
+                <TextBox x:Name="txtAddress" IsReadOnly="True" FontSize="14" />
+
+                <TextBlock Text="📅 Ngày tạo:" FontWeight="Bold" />
+                <TextBox x:Name="txtCreatedDate" IsReadOnly="True" FontSize="14" />
+
+                <TextBlock Text="👤 Chủ hộ:" FontWeight="Bold" />
+                <TextBox x:Name="txtHeadOfHouseHold" IsReadOnly="True" FontSize="14" />
+            </StackPanel>
+
+            <TextBlock Text="👥 Danh Sách Thành Viên" FontSize="18" FontWeight="Bold" Foreground="#3498DB" Margin="10,10,0,5"/>
+
+            <DataGrid Grid.Row="1" x:Name="memberDataGrid" AutoGenerateColumns="False" Margin="10"
+                  FontSize="14" RowBackground="White" AlternatingRowBackground="#F0F0F0"
+                  HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="🆔 Công dân" Binding="{Binding MemberId}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="👤 Tên Công dân" Binding="{Binding UserName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="🔗 Mối quan hệ" Binding="{Binding Relationship}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

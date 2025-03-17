@@ -5,76 +5,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="UpdateMember" Height="450" Width="800">
+        Title="UpdateMember" Height="300" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Full Name -->
         <Label Content="Full Name:"
-               Grid.Row="0"
-               Grid.Column="0"
-               VerticalAlignment="Center" />
+           Grid.Row="0"
+           Grid.Column="0"
+           VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
         <TextBox x:Name="txtFullName"
-                 Grid.Row="0"
-                 Grid.Column="1"
-                 Margin="0,5" />
+             Grid.Row="0"
+             Grid.Column="1"
+             Margin="0,5"
+             Padding="5"
+             FontSize="14"
+             BorderBrush="Gray"
+             BorderThickness="1"
+             />
 
         <!-- Address -->
         <Label Content="Address:"
-               Grid.Row="1"
-               Grid.Column="0"
-               VerticalAlignment="Center" />
+           Grid.Row="1"
+           Grid.Column="0"
+           VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
         <TextBox x:Name="txtAddress"
-                 Grid.Row="1"
-                 Grid.Column="1"
-                 Margin="0,5" />
+             Grid.Row="1"
+             Grid.Column="1"
+             Margin="0,5"
+             Padding="5"
+             FontSize="14"
+             BorderBrush="Gray"
+             BorderThickness="1"
+             />
 
         <!-- Email -->
         <Label Content="Email:"
-               Grid.Row="2"
-               Grid.Column="0"
-               VerticalAlignment="Center" />
+           Grid.Row="2"
+           Grid.Column="0"
+           VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
         <TextBox x:Name="txtEmail"
-                 Grid.Row="2"
-                 Grid.Column="1"
-                 Margin="0,5" />
+             Grid.Row="2"
+             Grid.Column="1"
+             Margin="0,5"
+             Padding="5"
+             FontSize="14"
+             BorderBrush="Gray"
+             BorderThickness="1"
+             />
 
         <!-- Relationship -->
         <Label Content="Relationship:"
-               Grid.Row="3"
-               Grid.Column="0"
-               VerticalAlignment="Center" />
+           Grid.Row="3"
+           Grid.Column="0"
+           VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
         <TextBox x:Name="txtRelationship"
-                 Grid.Row="3"
-                 Grid.Column="1"
-                 Margin="0,5" />
+             Grid.Row="3"
+             Grid.Column="1"
+             Margin="0,5"
+             Padding="5"
+             FontSize="14"
+             BorderBrush="Gray"
+             BorderThickness="1"
+             />
 
         <!-- Buttons -->
         <StackPanel Grid.Row="4"
-                    Grid.ColumnSpan="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="0,20,0,0">
-            <Button Content="Save"
-                    Width="100"
-                    Margin="5"
-                    Click="SaveButton_Click" />
-            <Button Content="Cancel"
-                    Width="100"
-                    Margin="5"
-                    Click="CancelButton_Click" />
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Margin="0,20,0,0">
+            <Button Content="💾 Save"
+                Width="100"
+                Height="35"
+                Margin="5"
+                Foreground="White"
+                Background="#2ECC71"
+                FontSize="14"
+                Cursor="Hand"
+                Click="SaveButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="❌ Cancel"
+                Width="100"
+                Height="35"
+                Margin="5"
+                Foreground="White"
+                Background="#E74C3C"
+                FontSize="14"
+                Cursor="Hand"
+                Click="CancelButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
+
 </Window>

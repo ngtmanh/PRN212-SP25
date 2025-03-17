@@ -45,5 +45,10 @@ namespace Prn212
             viewRegistration.Show();
             this.Close();
         }
+        private void BtnHouseHoldDetail_Click(object sender, RoutedEventArgs e)
+        {
+            CitizenHouseHoldDetail houseHoldDetail = new CitizenHouseHoldDetail(_currentUser);
+            houseHoldDetail.ShowDialog();
+        }
     }
 }
