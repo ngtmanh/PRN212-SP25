@@ -16,6 +16,7 @@
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="Approved By" Binding="{Binding ApprovedBy}" Width="*"/>
                 <DataGridTextColumn Header="Comments" Binding="{Binding Comments}" Width="*"/>
+                <DataGridTextColumn Header="RegistrationDetail" Binding="{Binding RegistrationDetail}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 

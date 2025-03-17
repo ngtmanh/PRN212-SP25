@@ -22,10 +22,12 @@ namespace Prn212
     public partial class ManageMember : UserControl
     {
         private readonly Prn212Context _context;
-        public ManageMember()
+        private User _currentUser;
+        public ManageMember(User user)
         {
             _context = new Prn212Context();
             InitializeComponent();
+            _currentUser = user;
             loadData();
         }
 
@@ -40,7 +42,7 @@ namespace Prn212
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD, _context);
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD, _context);
             var selectItem = ResidentsDataGrid.SelectedItem as HouseholdMember;
             if (selectItem != null)
             {
@@ -57,7 +59,7 @@ namespace Prn212
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE, _context);
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE, _context);
 
             var selectItem = ResidentsDataGrid.SelectedItem as HouseholdMember;
 
@@ -76,7 +78,7 @@ namespace Prn212
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE, _context);
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE, _context);
 
             MessageBoxResult result = MessageBox.Show(
                 "Are you sure to delete?",
@@ -92,21 +94,21 @@ namespace Prn212
                     _context.Remove(selectItem);
                     _context.SaveChanges();
 
-                    Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_SUCCESS, _context);
+                    Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_SUCCESS, _context);
 
                     MessageBox.Show("Delete Successfull");
                     loadData();
                 }
                 else
                 {
-                    Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
+                    Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
 
                     MessageBox.Show("Please choose one house hold");
                 }
             }
             else
             {
-                Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
+                Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
 
             }
         }
