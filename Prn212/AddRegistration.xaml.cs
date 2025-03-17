@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Microsoft.Data.SqlClient;
 using Microsoft.Win32;
 using Prn212.Models;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace Prn212
 {
@@ -64,7 +67,8 @@ namespace Prn212
             };
             context.Registrations.Add(newRegistration);
             context.SaveChanges();
-            
+            SendEmailToUser(newRegistration.RegistrationId, selectedType, _currentUser.Email);
+
             MessageBox.Show("Registration added successfully!");
             ViewRegistration viewReg = new ViewRegistration(_currentUser);
             viewReg.Show();
@@ -90,6 +94,55 @@ namespace Prn212
                 _fileType = System.IO.Path.GetExtension(filePath);
 
                 txtFileName.Text = _fileName;
+        private void SendEmailToUser(int registrationId, string registrationType, string userEmail)
+        {
+            try
+            {
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("takhucthienbao@gmail.com", "rvin wacu cqrj wuhn"),
+                    EnableSsl = true,
+                };
+
+                string subject = "Xác nhận gửi đơn thành công";
+                string body = $@"
+                    <html>
+                        <body>
+                            <h3>Thông báo từ hệ thống</h3>
+                            <p>Đơn đăng ký của bạn đã được gửi thành công!</p>
+                            <table border='1'>
+                                <tr>
+                                    <td>Mã đơn</td>
+                                    <td>{registrationId}</td>
+                                </tr>
+                                <tr>
+                                    <td>Loại đơn</td>
+                                    <td>{registrationType}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày gửi</td>
+                                    <td>{DateTime.Now.ToString("dd/MM/yyyy HH:mm")}</td>
+                                </tr>
+                            </table>
+                            <p>Chúng tôi sẽ xử lý đơn của bạn trong thời gian sớm nhất.</p>
+                        </body>
+                    </html>";
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("tathienbao2004@gmail.com"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true,
+                };
+                mailMessage.To.Add(userEmail);
+
+                smtpClient.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to send email: {ex.Message}");
             }
         }
     }
