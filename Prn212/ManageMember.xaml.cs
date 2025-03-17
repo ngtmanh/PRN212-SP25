@@ -46,7 +46,7 @@ namespace Prn212
             var selectItem = ResidentsDataGrid.SelectedItem as HouseholdMember;
             if (selectItem != null)
             {
-                AddMember addMember = new AddMember();
+                AddMember addMember = new AddMember(_currentUser);
                 addMember.houseHoldId = (int)selectItem.HouseholdId;              
                 addMember.ShowDialog();
                 loadData();
@@ -66,7 +66,7 @@ namespace Prn212
             if (selectItem != null)
             {
                 int memberId = (int)selectItem.MemberId;
-                UpdateMember updateMember = new UpdateMember(memberId);
+                UpdateMember updateMember = new UpdateMember(memberId,_currentUser);
 //                updateMember.ShowDialog();
                 loadData();
             }

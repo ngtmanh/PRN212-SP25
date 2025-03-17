@@ -23,10 +23,12 @@ namespace Prn212
     public partial class UpdateMember : Window
     {
         private readonly Prn212Context _context;
+        private User _currentUser;
 
         public HouseholdMember householdMember { get; set; }
-        public UpdateMember(int menberId)
+        public UpdateMember(int menberId,User user)
         {
+            _currentUser = user;
             _context = new Prn212Context();
             InitializeComponent();
             loadData(menberId);
@@ -56,13 +58,13 @@ namespace Prn212
             householdMember.Relationship = txtRelationship.Text;
 
             _context.SaveChanges();
-            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_SUCCESS, _context);
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_SUCCESS, _context);
             MessageBox.Show("Update Successfull");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_FAIL, _context);
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_UPDATE_FAIL, _context);
 
             this.Close();
         }

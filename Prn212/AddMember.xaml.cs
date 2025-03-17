@@ -21,12 +21,13 @@ namespace Prn212
     public partial class AddMember : Window
     {
         private readonly Prn212Context _context;
+        private User _currentUser;
         public int houseHoldId { get; set; }
-        public AddMember()
+        public AddMember(User currentUser)
         {
             _context = new Prn212Context();
             InitializeComponent();
-
+            _currentUser = currentUser;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -45,14 +46,14 @@ namespace Prn212
 
                 _context.HouseholdMembers.Add(houseHoldMember);
                 _context.SaveChanges();
-                Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_SUCCESS, _context);
+                Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_SUCCESS, _context);
 
 
                 MessageBox.Show("Successfull");
             }
             else
             {
-                Resource.Resoure.saveLog(Resource.Resoure.getUserId(), Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_FAIL, _context);
+                Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_FAIL, _context);
             }
         }
 

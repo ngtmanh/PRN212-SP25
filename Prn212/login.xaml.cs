@@ -39,7 +39,7 @@ namespace Prn212
 
                 if (user.Role == "AreaLeader")
                 {
-                    MainWindow window = new MainWindow();
+                    MainWindow window = new MainWindow(user);
                     window.Show();
                 }
 
