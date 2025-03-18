@@ -107,7 +107,7 @@ public partial class Prn212Context : DbContext
 
         modelBuilder.Entity<Registration>(entity =>
         {
-            entity.HasKey(e => e.RegistrationId).HasName("PK__Registra__6EF588305C7B8E6B");
+            entity.HasKey(e => e.RegistrationId).HasName("PK__Registra__6EF58830234840A2");
 
             entity.Property(e => e.RegistrationId).HasColumnName("RegistrationID");
             entity.Property(e => e.RegistrationType).HasMaxLength(50);
@@ -119,20 +119,20 @@ public partial class Prn212Context : DbContext
 
             entity.HasOne(d => d.ApprovedByNavigation).WithMany(p => p.RegistrationApprovedByNavigations)
                 .HasForeignKey(d => d.ApprovedBy)
-                .HasConstraintName("FK__Registrat__Appro__5EBF139D");
+                .HasConstraintName("FK__Registrat__Appro__778AC167");
 
             entity.HasOne(d => d.RegistrationDetail).WithMany(p => p.Registrations)
                 .HasForeignKey(d => d.RegistrationDetailId)
-                .HasConstraintName("FK__Registrat__Regis__59FA5E80");
+                .HasConstraintName("FK__Registrat__Regis__72C60C4A");
 
             entity.HasOne(d => d.User).WithMany(p => p.RegistrationUsers)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Registrat__UserI__5DCAEF64");
+                .HasConstraintName("FK__Registrat__UserI__76969D2E");
         });
 
         modelBuilder.Entity<RegistrationDetail>(entity =>
         {
-            entity.HasKey(e => e.RegistrationDetailId).HasName("PK__Registra__159E253481F84597");
+            entity.HasKey(e => e.RegistrationDetailId).HasName("PK__Registra__159E2534624A08F7");
 
             entity.ToTable("RegistrationDetail");
         });

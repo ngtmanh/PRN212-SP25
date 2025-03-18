@@ -70,5 +70,6 @@ FontSize="14" Cursor="Hand" Click="BtnCancel_Click">
                 </Button.Template>
             </Button>
         </StackPanel>
+
     </Grid>
 </Window>

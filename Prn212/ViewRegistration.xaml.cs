@@ -57,6 +57,7 @@ namespace Prn212
             {
                 ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(selectedRegistration, _currentUser);
                 detailWindow.ShowDialog();
+                this.Close();
             }
             else
             {

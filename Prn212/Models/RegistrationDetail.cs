@@ -11,7 +11,11 @@ public partial class RegistrationDetail
 
     public string? VerifyingIdentity { get; set; }
 
-    public string? VerifyingResidence { get; set; }
+    public string? ResidenceFileName { get; set; }
+
+    public string? ResidenceFileType { get; set; }
+
+    public byte[]? ResidenceFileData { get; set; }
 
     public virtual ICollection<Registration> Registrations { get; set; } = new List<Registration>();
 }

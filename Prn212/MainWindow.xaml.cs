@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Prn212.Models;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,14 +17,16 @@ namespace Prn212
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private User _currentUser;
+        public MainWindow(User user)
         {
             InitializeComponent();
+            _currentUser = user;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new ManageMember();
+            MainFrame.Content = new ManageMember(_currentUser);
         }
     }
 }

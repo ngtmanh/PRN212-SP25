@@ -19,9 +19,10 @@ create table RegistrationDetail (
 	RegistrationDetailId int primary key identity(1,1),
 	Description NVARCHAR(max) NOT NULL,
 	VerifyingIdentity nvarchar(max) null,
-	VerifyingResidence nvarchar(max) null
+	ResidenceFileName nvarchar(max) null,
+	ResidenceFileType nvarchar(max) null,
+	ResidenceFileData VARBINARY(MAX) null
 )
-
 CREATE TABLE Registrations (
     RegistrationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
