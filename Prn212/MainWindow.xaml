@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="MainWindow" Height="auto" Width="800">
+        Title="Trang chủ" Height="auto" Width="800">
     <Grid>
         <!-- Định nghĩa bố cục -->
         <Grid.RowDefinitions>

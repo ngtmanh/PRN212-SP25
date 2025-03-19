@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="login" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+        Title="Đăng nhập" Height="300" Width="400" WindowStartupLocation="CenterScreen">
     <Grid Background="#F9F9F9">
         <Border Width="350" Height="250" Background="White" CornerRadius="10"
             HorizontalAlignment="Center" VerticalAlignment="Center" 

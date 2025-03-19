@@ -13,9 +13,6 @@
     <Compile Update="PoliceWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UpFile.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="ViewRegistrationDetail.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,9 +25,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PoliceWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UpFile.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ViewRegistrationDetail.xaml">

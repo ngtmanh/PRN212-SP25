@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="AddRegistration" Height="400" Width="600"
+        Title="Thêm đơn duyệt" Height="400" Width="600"
         WindowStartupLocation="CenterScreen" Background="#F2F2F2">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,18 +27,18 @@
 
         <!-- Tiêu đề -->
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" Foreground="#007ACC"
-                   Text="📄 Đăng Ký Cư Trú" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                   Text="📄 Đơn duyệt" VerticalAlignment="Center" Margin="0,0,0,10"/>
 
         <!-- Loại đăng ký -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="📌 Loại đăng ký:" FontWeight="Bold" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbRegistrationType" Margin="65,5,65,5">
-            <ComboBoxItem Content="Thường trú" />
-            <ComboBoxItem Content="Tạm trú" />
-            <ComboBoxItem Content="Tạm vắng" />
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbRegistrationType" Margin="65,5,65,5" >
+            <ComboBoxItem Content="Permanent" />
+            <ComboBoxItem Content="Temporary" />
+            <ComboBoxItem Content="TemporaryStay" />
         </ComboBox>
 
         <!-- Mô tả -->
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="📝 Mô tả:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="📝 Mô tả:" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDescription" Width="300" Margin="5"/>
 
         <!-- CCCD/CMND -->
@@ -48,7 +49,9 @@
         <TextBlock Grid.Row="4" Grid.Column="0" Text="📍 Địa chỉ xác minh:" FontWeight="Bold" VerticalAlignment="Center"/>
         <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtVerifyingResidence" Width="300" Margin="5"/>
 
-        <Button Grid.Row="5" Content="Upload File" Width="130" Height="30" Click="BtnUpload_Click"/>
+        <!-- Upfile dữ liệu -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="📝 Giấy tờ chứng minh nơi ở:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <Button Grid.Row="6" Content="Upload File" Width="130" Height="30" Click="BtnUpload_Click"/>
         <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtFileName" Width="300" Margin="5" IsReadOnly="True" />
 
         <!-- Nút Submit -->

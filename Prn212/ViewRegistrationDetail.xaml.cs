@@ -100,6 +100,7 @@ namespace Prn212
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
             rg.ApprovedByNavigation = _currentUser;
+            rg.EndDate = DateOnly.FromDateTime(DateTime.Now);
             rg.Status = "Approved";
             context.SaveChanges();
             string? userEmail = rg.User?.Email;
@@ -128,6 +129,7 @@ namespace Prn212
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
             rg.ApprovedByNavigation = _currentUser;
+            rg.EndDate = DateOnly.FromDateTime(DateTime.Now);
             rg.Status = "Rejected";
             context.SaveChanges();
             string? userEmail = rg.User?.Email;

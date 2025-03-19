@@ -22,7 +22,7 @@ create table RegistrationDetail (
 	ResidenceFileName nvarchar(max) null,
 	ResidenceFileType nvarchar(max) null,
 	ResidenceFileData VARBINARY(MAX) null
-)
+);
 CREATE TABLE Registrations (
     RegistrationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,

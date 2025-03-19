@@ -19,15 +19,17 @@ namespace Prn212
     public partial class ViewRegistration : Window
     {
         private User _currentUser;
+
         public ViewRegistration(User user)
         {
             InitializeComponent();
             _currentUser = user;
             cbStatus.SelectedIndex = 0;
-            LoadRegistrations("All");
+            LoadRegistrations("All", null, null, null, null);
+            CheckRole();
         }
 
-        private void LoadRegistrations(string status = null)
+        private void LoadRegistrations(string status = null, DateTime? startDate = null, DateTime? endDate = null, DateTime? startDateApproval = null, DateTime? endDateApproval = null)
         {
             using (var context = new Prn212Context())
             {
@@ -36,15 +38,33 @@ namespace Prn212
                     .Include(r => r.ApprovedByNavigation)
                     .Include(r => r.User)
                     .AsQueryable();
+
                 if (!string.IsNullOrEmpty(status) && status != "All")
                 {
                     registrations = registrations.Where(r => r.Status == status);
                 }
 
-                if (_currentUser.Role == "Citizen" && !string.IsNullOrEmpty(status))
+                if (_currentUser.Role == "Citizen")
                 {
+                    registrations = registrations.Where(r => r.UserId == _currentUser.UserId);
+                }
+
+                if (startDate.HasValue && endDate.HasValue)
+                {
+                    DateOnly start = DateOnly.FromDateTime(startDate.Value);
+                    DateOnly end = DateOnly.FromDateTime(endDate.Value);
+
                     registrations = registrations
-                        .Where(r => r.UserId == _currentUser.UserId);                        
+                        .Where(r => r.StartDate >= start && r.StartDate <= end);
+                }
+
+                if (startDateApproval.HasValue && endDateApproval.HasValue)
+                {
+                    DateOnly startApproval = DateOnly.FromDateTime(startDateApproval.Value);
+                    DateOnly endApproval = DateOnly.FromDateTime(endDateApproval.Value);
+
+                    registrations = registrations
+                        .Where(r => r.StartDate >= startApproval && r.StartDate <= endApproval);
                 }
 
                 registrationDataGrid.ItemsSource = registrations.ToList();
@@ -63,25 +83,21 @@ namespace Prn212
             {
                 MessageBox.Show("Vui lòng chọn một đơn đăng ký!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
 
+        private void CheckRole()
+        {
+            if (_currentUser.Role == "Police")
+            {
+                btnAddRegistration.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentUser.Role == "Citizen")
-            {
-                CitizenWindow citizenWindow = new CitizenWindow(_currentUser);
-                citizenWindow.Show();
-                this.Close();
-            }
-
-            if (_currentUser.Role == "Police")
-            {
-                PoliceWindow policeWindow = new PoliceWindow(_currentUser);
-                policeWindow.Show();
-                this.Close();
-            }
-
+            Window nextWindow = _currentUser.Role == "Citizen" ? new CitizenWindow(_currentUser) : new PoliceWindow(_currentUser);
+            nextWindow.Show();
+            this.Close();
         }
 
         private void BtnAddRegistration_Click(object sender, RoutedEventArgs e)
@@ -96,13 +112,23 @@ namespace Prn212
             if (cbStatus.SelectedItem is ComboBoxItem selectedItem)
             {
                 string selectedStatus = selectedItem.Content.ToString();
-                LoadRegistrations(selectedStatus);
+                LoadRegistrations(selectedStatus, StartDatePicker.SelectedDate, EndDatePicker.SelectedDate);
             }
         }
 
+        private void StartDatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadRegistrations((cbStatus.SelectedItem as ComboBoxItem)?.Content.ToString(), StartDatePicker.SelectedDate, EndDatePicker.SelectedDate, null, null);
+        }
+
+        private void EndDatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadRegistrations((cbStatus.SelectedItem as ComboBoxItem)?.Content.ToString(), null, null, StartDateApprovalPicker.SelectedDate, EndDateApprovalPicker.SelectedDate);
+        }
+
+
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            
             string status = (cbStatus.SelectedItem as ComboBoxItem)?.Content.ToString();
             string searchKey = txtSearch.Text.Trim();
 
@@ -114,19 +140,16 @@ namespace Prn212
                     .Include(r => r.User)
                     .AsQueryable();
 
-                
                 if (!string.IsNullOrEmpty(status) && status != "All")
                 {
                     registrations = registrations.Where(r => r.Status == status);
                 }
 
-                
                 if (!string.IsNullOrEmpty(searchKey))
                 {
                     registrations = registrations.Where(r => r.RegistrationDetail.VerifyingIdentity.Contains(searchKey));
                 }
 
-                
                 if (_currentUser.Role == "Citizen")
                 {
                     registrations = registrations.Where(r => r.UserId == _currentUser.UserId);
@@ -136,5 +159,4 @@ namespace Prn212
             }
         }
     }
-
 }

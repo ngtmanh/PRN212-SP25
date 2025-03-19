@@ -32,11 +32,30 @@ namespace Prn212
         {
             InitializeComponent();
             _currentUser = user;
+            //LoadCbRegistrationType();
         }
+
+        //private void LoadCbRegistrationType()
+        //{
+        //    
+        //    var registrationTypes = context.Registrations
+        //                                   .Select(r => r.RegistrationType)
+        //                                   .Distinct()
+        //                                   .ToList();
+
+  
+        //    cbRegistrationType.Items.Clear();
+
+        //    foreach (var type in registrationTypes)
+        //    {
+        //        cbRegistrationType.Items.Add(type);
+        //    }
+        //}
+
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string selectedType = ((ComboBoxItem)cmbRegistrationType.SelectedItem).Content.ToString();
+            string selectedType = ((ComboBoxItem)cbRegistrationType.SelectedItem).Content.ToString();
             string description = txtDescription.Text;
             string verifyingIdentity = txtVerifyingIdentity.Text;
 
@@ -52,7 +71,7 @@ namespace Prn212
             };
             context.RegistrationDetails.Add(registrationDetail);
             context.SaveChanges();
-            
+
             // Lấy RegistrationDetailId mới
             int registrationDetailId = registrationDetail.RegistrationDetailId;
 
