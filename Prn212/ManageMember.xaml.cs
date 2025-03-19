@@ -12,7 +12,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
+using OfficeOpenXml;
 
 namespace Prn212
 {
@@ -125,6 +126,55 @@ namespace Prn212
                 data = data.Where(c => c.User.FullName.Contains(txtSearch)).ToList();
             }
             ResidentsDataGrid.ItemsSource = data;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var residents = ResidentsDataGrid.ItemsSource as List<HouseholdMember>;
+            if (residents == null || residents.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+                return;
+            }
+
+            string folderPath = "C:\\FPT\\semester 7\\PRN212\\Project";
+            string fileName = $"Export_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+            string filePath = System.IO.Path.Combine(folderPath, fileName);
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                // Ghi tiêu đề
+                worksheet.Cells[1, 1].Value = "ID";
+                worksheet.Cells[1, 2].Value = "Full Name";
+                worksheet.Cells[1, 3].Value = "Address";
+                worksheet.Cells[1, 4].Value = "Head of Household";
+                worksheet.Cells[1, 5].Value = "Relationship";
+
+                // Ghi dữ liệu từ DataGrid
+                int row = 2;
+                foreach (var resident in residents)
+                {
+                    worksheet.Cells[row, 1].Value = resident.MemberId;
+                    worksheet.Cells[row, 2].Value = resident.User.FullName;
+                    worksheet.Cells[row, 3].Value = resident.User.Address;
+                    worksheet.Cells[row, 4].Value = resident.Household.HeadOfHousehold.FullName;
+                    worksheet.Cells[row, 5].Value = resident.Relationship;
+                    row++;
+                }
+
+                // Lưu file Excel
+                File.WriteAllBytes(filePath, package.GetAsByteArray());
+                MessageBox.Show($"Xuất file Excel thành công: {filePath}");
+            }
         }
     }
 }
