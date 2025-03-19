@@ -94,6 +94,8 @@ namespace Prn212
                 _fileType = System.IO.Path.GetExtension(filePath);
 
                 txtFileName.Text = _fileName;
+            }
+        }
         private void SendEmailToUser(int registrationId, string registrationType, string userEmail)
         {
             try

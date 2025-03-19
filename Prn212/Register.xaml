@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="Register" Height="400" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Register" Height="450" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
@@ -25,6 +25,11 @@
             <Label Content="Password" FontSize="14" FontWeight="Bold"/>
             <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Padding="3">
                 <PasswordBox x:Name="txtPassword" Width="250" Height="30" FontSize="14" Background="White"/>
+            </Border>
+
+            <Label Content="Password" FontSize="14" FontWeight="Bold"/>
+            <Border CornerRadius="8" BorderBrush="Gray" BorderThickness="1" Padding="3">
+                <PasswordBox x:Name="txtRePassword" Width="250" Height="30" FontSize="14" Background="White"/>
             </Border>
 
             <!-- Address -->
