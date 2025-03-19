@@ -27,6 +27,8 @@
             <Button Content="Tìm"
                     Width="75"
                     Click="SearchButton_Click" />
+            <Button  Margin="100 0 0 0" Content="Export" Width="70" HorizontalAlignment="Right"
+                     Click="Button_Click" />
         </StackPanel>
 
         <!-- DataGrid for Residents -->
