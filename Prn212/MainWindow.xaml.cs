@@ -28,5 +28,10 @@ namespace Prn212
         {
             MainFrame.Content = new ManageMember(_currentUser);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new LeaderRigistration(_currentUser);
+        }
     }
 }
