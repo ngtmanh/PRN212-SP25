@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="Danh sách đơn" Height="450" Width="800">
+        Title="Danh sách đơn" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,10 +17,10 @@
         </Grid.RowDefinitions>
 
         <!-- Bộ lọc trạng thái -->
-        <Border Grid.Row="0" Padding="10" CornerRadius="8" Background="#F5F5F5" Margin="0,10,0,10">
+        <Border Grid.Row="0" Padding="10" CornerRadius="8" Background="#F5F5F5" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Label Content="Trạng thái đơn:" FontWeight="Bold" FontSize="14"/>
-                <ComboBox x:Name="cbStatus" Width="250" Height="40" FontSize="14" Margin="10,0,0,0" SelectionChanged="CbStatus_SelectionChanged">
+                <ComboBox x:Name="cbStatus" Width="250" Height="auto" FontSize="14" Margin="10,0,0,0" SelectionChanged="CbStatus_SelectionChanged">
                     <ComboBoxItem Content="All" />
                     <ComboBoxItem Content="Pending" />
                     <ComboBoxItem Content="Rejected" />
@@ -46,10 +46,10 @@
         </StackPanel>
 
         <!-- Ô tìm kiếm -->
-        <Border Grid.Row="3" Padding="10" CornerRadius="8" Background="#F5F5F5" Margin="0,10,0,10">
+        <Border x:Name="borderSearch" Grid.Row="3" Padding="10" CornerRadius="8" Background="#F5F5F5" Margin="0,10,0,10" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox x:Name="txtSearch" Width="300" Height="40" Padding="10" FontSize="14" Background="White"/>
-                <TextBlock x:Name="txtCommentsPlaceholder" Text="Nhập số CCCD/CMND" Foreground="Gray" IsHitTestVisible="False" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14"/>
+                <TextBox x:Name="txtSearch" Width="300" Height="40" Padding="10" FontSize="14" Background="White" Foreground="Gray" Text="Nhập số CCCD/CMND" 
+                 GotFocus="txtSearch_GotFocus" LostFocus="txtSearch_LostFocus"/>
                 <Button x:Name="btnSearch" Content="🔍 Tìm kiếm" Width="120" Height="40" FontSize="14" Margin="10,0,0,0" Background="#2196F3" Foreground="White" Click="BtnSearch_Click"/>
             </StackPanel>
         </Border>

@@ -10,107 +10,72 @@
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="900"/>
-            <ColumnDefinition  Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ô sort theo ngày gửi đơn -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Ngày gửi từ: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="StartDatePicker" Width="150" Margin="5,0" SelectedDateChanged="StartDatePicker_SelectionChanged"/>
+            <TextBlock Text="Đến: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="EndDatePicker" Width="150" Margin="5,0" SelectedDateChanged="StartDatePicker_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Ô sort theo ngày duyệt đơn -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Ngày duyệt từ: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="StartDateApprovalPicker" Width="150" Margin="5,0" SelectedDateChanged="EndDatePicker_SelectionChanged"/>
+            <TextBlock Text="Đến: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="EndDateApprovalPicker" Width="150" Margin="5,0" SelectedDateChanged="EndDatePicker_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Ô tìm kiếm -->
+        <Border x:Name="borderSearch" Grid.Row="2" Padding="10" CornerRadius="8" Background="#F5F5F5" Margin="0,10,0,10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox x:Name="txtSearch" Width="300" Height="40" Padding="10" FontSize="14" Background="White" Foreground="Gray" Text="Nhập số CCCD/CMND" 
+         GotFocus="txtSearch_GotFocus" LostFocus="txtSearch_LostFocus"/>
+                <Button x:Name="btnSearch" Content="🔍 Tìm kiếm" Width="120" Height="40" FontSize="14" Margin="10,0,0,0" Background="#2196F3" Foreground="White" Click="BtnSearch_Click"/>
+            </StackPanel>
+        </Border>
+        
         <DataGrid x:Name="registrationDataGrid"
                   AutoGenerateColumns="False"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
-                  Margin="10" Grid.Column="0">
+                  CanUserAddRows="false"
+                  Margin="10" Grid.Row="3">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Registration Type"
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding RegistrationId}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Loại đơn"
                                     Binding="{Binding RegistrationType}"
                                     Width="*" />
-                <DataGridTextColumn Header="Start Date"
+                <DataGridTextColumn Header="Ngày gửi"
                                     Binding="{Binding StartDate}"
                                     Width="*" />
-                <DataGridTextColumn Header="End Date"
+                <DataGridTextColumn Header="Ngày duyệt"
                                     Binding="{Binding EndDate}"
                                     Width="*" />
-                <DataGridTextColumn Header="Status"
-                                    Binding="{Binding Status}"
+                <DataGridTextColumn Header="Người gửi"
+                                    Binding="{Binding User.FullName}"
                                     Width="*" />
-                <DataGridTextColumn Header="Approved By"
-                                    Binding="{Binding ApprovedBy}"
+                <DataGridTextColumn Header="Số CCCD/CMND"
+                                    Binding="{Binding RegistrationDetail.VerifyingIdentity}"
                                     Width="*" />
-                <DataGridTextColumn Header="Comments"
-                                    Binding="{Binding Comments}"
-                                    Width="*" />
-                <DataGridTextColumn Header="Description"
-                                    Binding="{Binding RegistrationDetail.Description}"
+                <DataGridTextColumn Header="Duyệt bởi"
+                                    Binding="{Binding ApprovedByNavigation.FullName}"
                                     Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Registration Type"
-                       Width="100"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding RegistrationType}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Start Date"
-                       Width="100"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding StartDate}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="End Date"
-                       Width="100"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding EndDate}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Approved By"
-                       Width="100"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding Status}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Status"
-                       Width="100"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding ApprovedBy}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Comment"
-                       Width="100"
-                       Height="50"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding Comments}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="5">
-                <Label Content="Description"
-                       Width="100"
-                       Height="50"
-                       Margin="0 0 10 0" />
-                <TextBox Width="175"
-                         Text="{Binding RegistrationDetail.Description}"
-                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
-            </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnViewDetail" Content="🔍 Xem thông tin" Width="140" Height="45" FontSize="14" Margin="10" Background="#2196F3" Foreground="White" Click="BtnViewDetail_Click"/>
         </StackPanel>
+
     </Grid>
 </UserControl>

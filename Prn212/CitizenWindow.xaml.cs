@@ -29,6 +29,7 @@ namespace Prn212
         {
             CitizenProfile profileWindow = new CitizenProfile(_currentUser);
             profileWindow.ShowDialog();
+            this.Close();
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)

@@ -37,6 +37,7 @@ namespace Prn212
             var data = _context.HouseholdMembers
                 .Include(c => c.Household)
                 .Include(c => c.User)
+                .Where(c => c.Relationship == "Chủ hộ")
                 .ToList();
             ResidentsDataGrid.ItemsSource = data;
         }
@@ -48,13 +49,13 @@ namespace Prn212
             if (selectItem != null)
             {
                 AddMember addMember = new AddMember(_currentUser);
-                addMember.houseHoldId = (int)selectItem.HouseholdId;              
+                addMember.houseHoldId = (int)selectItem.HouseholdId;
                 addMember.ShowDialog();
                 loadData();
             }
             else
             {
-                MessageBox.Show("Please choose one house hold");
+                MessageBox.Show("Vui lòng chọn 1 hộ dân");
             }
         }
 
@@ -67,52 +68,92 @@ namespace Prn212
             if (selectItem != null)
             {
                 int memberId = (int)selectItem.MemberId;
-                UpdateMember updateMember = new UpdateMember(memberId,_currentUser);
-//                updateMember.ShowDialog();
+                UpdateMember updateMember = new UpdateMember(memberId, _currentUser);
+                updateMember.ShowDialog();
                 loadData();
             }
             else
             {
-                MessageBox.Show("Please choose one house hold");
+                MessageBox.Show("Vui lòng chọn 1 hộ dân");
             }
         }
 
+        //Hàm này sẽ xóa tất cả thông tin liên quan đến chủ hộ, cả về thông tin hộ gia đình, thành viên gia đình, nhưng sẽ dữ lại dữ liệu của chủ hộ để 
+        //lưu thông tin truy vấn sau này
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE, _context);
 
             MessageBoxResult result = MessageBox.Show(
-                "Are you sure to delete?",
-                "Delete",
+                "Có chắc chắn xóa hộ gia đình này?",
+                "Xóa",
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Warning
             );
+
             if (result == MessageBoxResult.OK)
             {
                 var selectItem = ResidentsDataGrid.SelectedItem as HouseholdMember;
+
                 if (selectItem != null)
                 {
-                    _context.Remove(selectItem);
-                    _context.SaveChanges();
+                    
+                    var household = _context.Households
+                        .FirstOrDefault(h => h.HeadOfHouseholdId == selectItem.UserId);
 
-                    Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_SUCCESS, _context);
+                    if (household != null)
+                    {
+                        
+                        var householdMembers = _context.HouseholdMembers
+                            .Where(hm => hm.HouseholdId == household.HouseholdId)
+                            .ToList();
 
-                    MessageBox.Show("Delete Successfull");
-                    loadData();
+                        
+                        var userIds = householdMembers
+                            .Where(hm => hm.UserId != household.HeadOfHouseholdId)
+                            .Select(hm => hm.UserId)
+                            .ToList();
+
+                        var usersToDelete = _context.Users
+                            .Where(u => userIds.Contains(u.UserId))
+                            .ToList();
+
+                        var headOfHousehold = _context.Users
+                            .FirstOrDefault(u => u.UserId == selectItem.UserId);
+                        int count = _context.Users.Count();
+                        if (headOfHousehold != null)
+                        {
+                            headOfHousehold.Email = $"user{count}@gmail.com";
+                            headOfHousehold.Password = "default" ;
+                        }                       
+                        _context.HouseholdMembers.RemoveRange(householdMembers); 
+                        _context.Users.RemoveRange(usersToDelete); 
+                        _context.Households.Remove(household); 
+                        _context.SaveChanges();
+
+                        Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_SUCCESS, _context);
+
+                        MessageBox.Show("Đã xóa hộ khấu");
+                        loadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra vui lòng thử lại");
+                    }
                 }
                 else
                 {
-                    Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
-
-                    MessageBox.Show("Please choose one house hold");
+                    MessageBox.Show("Hãy chọn một hộ gia đình");
                 }
             }
             else
             {
                 Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_DELETE_FAIL, _context);
-
             }
         }
+
+
+
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -174,6 +215,15 @@ namespace Prn212
                 // Lưu file Excel
                 File.WriteAllBytes(filePath, package.GetAsByteArray());
                 MessageBox.Show($"Xuất file Excel thành công: {filePath}");
+            }
+        }
+
+        private void ButtonView_Click(object sender, RoutedEventArgs e)
+        {
+            if (ResidentsDataGrid.SelectedItem is HouseholdMember selectedHousehold)
+            {
+                CitizenHouseHoldDetail citizenHhDetail = new CitizenHouseHoldDetail(selectedHousehold.User);
+                citizenHhDetail.Show();
             }
         }
     }

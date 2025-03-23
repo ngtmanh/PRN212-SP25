@@ -25,11 +25,11 @@
                    Text="👤 Thông Tin Quan Hệ" VerticalAlignment="Center" Margin="0,0,0,10"/>
 
         <!-- User ID -->
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="🆔 User ID:" FontWeight="Bold" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtUserId" Width="250" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="🆔 Họ và tên thành viên:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtFullname" Width="250" Margin="5"/>
 
         <!-- Relationship -->
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="🔗 Quan hệ:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="🔗 Quan hệ với chủ hộ:" FontWeight="Bold" VerticalAlignment="Center"/>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtRelation" Width="250" Margin="5"/>
 
         <!-- Nút Save -->

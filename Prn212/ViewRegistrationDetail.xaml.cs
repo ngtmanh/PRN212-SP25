@@ -27,6 +27,7 @@ namespace Prn212
         private User _currentUser;
         private Prn212Context context;
         private Registration registration;
+
         public ViewRegistrationDetail(object selectedRegistration, User user)
         {
             InitializeComponent();
@@ -58,6 +59,12 @@ namespace Prn212
                     return;
                 }
 
+                if (registration.Status == "Approved" || registration.Status == "Rejected")
+                {
+                    btnApprove.Visibility = Visibility.Collapsed;
+                    btnReject.Visibility = Visibility.Collapsed;
+                }
+
                 txtRegistrationType.Text = registrationDetail.RegistrationType ?? "N/A";
                 txtStatus.Text = registrationDetail.Status ?? "N/A";
                 txtDescription.Text = registrationDetail.RegistrationDetail?.Description ?? "N/A";
@@ -73,10 +80,19 @@ namespace Prn212
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            ViewRegistration vr = new ViewRegistration(_currentUser);
-            vr.Show();
-            this.Close();
+            if (_currentUser.Role == "AreaLeader")
+            {
+                this.Close();
+            }
+            else
+            {
+                ViewRegistration vr = new ViewRegistration(_currentUser);
+                vr.Show();
+                this.Close();
+            }
         }
+
+
 
         private void CheckUserPermissions()
         {
@@ -94,37 +110,86 @@ namespace Prn212
 
         private void BtnApprove_Click(object sender, RoutedEventArgs e)
         {
-            var rg = context.Registrations
-            .Include(r => r.User) // Đảm bảo tải thông tin User
-            .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
-            rg.Comments = txtComments.Text;
-            rg.ApprovedBy = _currentUser.UserId;
-            rg.ApprovedByNavigation = _currentUser;
-            rg.EndDate = DateOnly.FromDateTime(DateTime.Now);
-            rg.Status = "Approved";
-            context.SaveChanges();
-            string? userEmail = rg.User?.Email;
-            if (!string.IsNullOrEmpty(userEmail))
+            if (registration.RegistrationType == "Leave")
             {
-                SendConfirmationEmail(rg.RegistrationId, "Approved", userEmail, rg.Comments);
-                MessageBox.Show("Duyệt thành công! Email thông báo đã được gửi.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                var rg = context.Registrations
+                                            .Include(r => r.User)
+                                            .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+                rg.Comments = txtComments.Text;
+                rg.ApprovedBy = _currentUser.UserId;
+                rg.ApprovedByNavigation = _currentUser;
+                rg.EndDate = DateOnly.FromDateTime(DateTime.Now);
+                rg.Status = "Approved";
+                context.SaveChanges();
+                string? userEmail = rg.User?.Email;
+                if (!string.IsNullOrEmpty(userEmail))
+                {
+                    SendConfirmationEmail(rg.RegistrationId, "Approved", userEmail, rg.Comments);
+                    MessageBox.Show("Duyệt thành công! Email thông báo đã được gửi.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy email của công dân để gửi thông báo.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+                MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                ViewRegistration vr = new ViewRegistration(_currentUser);
+                vr.Show();
             }
             else
             {
-                MessageBox.Show("Không tìm thấy email của công dân để gửi thông báo.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                var rg = context.Registrations
+                                            .Include(r => r.User)
+                                            .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
+                rg.Comments = txtComments.Text;
+                rg.ApprovedBy = _currentUser.UserId;
+                rg.ApprovedByNavigation = _currentUser;
+                rg.EndDate = DateOnly.FromDateTime(DateTime.Now);
+                rg.Status = "Approved";
+
+                var newHousehold = new Household
+                {
+                    HeadOfHouseholdId = registration.UserId,
+                    Address = registration.User.Address,
+                    CreatedDate = DateOnly.FromDateTime(DateTime.Now)
+                };
+                context.Households.Add(newHousehold);
+                context.SaveChanges();
+
+                var HouseholdSelected = context.Households
+                    .Where(h => h.HeadOfHouseholdId == registration.UserId)
+                    .FirstOrDefault();
+
+                var newHouseholdMember = context.HouseholdMembers
+                    .Where(h => h.UserId == registration.UserId)
+                    .FirstOrDefault();
+                newHouseholdMember.Relationship = "Chủ hộ";
+                newHouseholdMember.HouseholdId = HouseholdSelected.HouseholdId;
+
+                context.SaveChanges();
+                string? userEmail = rg.User?.Email;
+                if (!string.IsNullOrEmpty(userEmail))
+                {
+                    SendConfirmationEmail(rg.RegistrationId, "Approved", userEmail, rg.Comments);
+                    MessageBox.Show("Duyệt thành công! Email thông báo đã được gửi.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy email của công dân để gửi thông báo.", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+                MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                ViewRegistration vr = new ViewRegistration(_currentUser);
+                vr.Show();
             }
-
-            MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Close();
-            ViewRegistration vr = new ViewRegistration(_currentUser);
-            vr.Show();           
-
         }
 
         private void BtnReject_Click(object sender, RoutedEventArgs e)
         {
             var rg = context.Registrations
-            .Include(r => r.User) // Đảm bảo tải thông tin User
+            .Include(r => r.User)
             .FirstOrDefault(r => r.RegistrationId == registration.RegistrationId);
             rg.Comments = txtComments.Text;
             rg.ApprovedBy = _currentUser.UserId;
@@ -146,7 +211,7 @@ namespace Prn212
             MessageBox.Show("Duyệt thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
             ViewRegistration vr = new ViewRegistration(_currentUser);
-            vr.Show();            
+            vr.Show();
         }
 
         private void BtnDownload_Click(object sender, RoutedEventArgs e)
@@ -158,7 +223,7 @@ namespace Prn212
             }
 
             // Lấy RegistrationDetailId từ database
-            int registrationDetailId = registration.RegistrationDetail.RegistrationDetailId; // Cần lấy ID của bản ghi đang chọn
+            int registrationDetailId = registration.RegistrationDetail.RegistrationDetailId;
             var registrationDetail = context.RegistrationDetails.FirstOrDefault(rd => rd.RegistrationDetailId == registrationDetailId);
 
             if (registrationDetail == null || registrationDetail.ResidenceFileData == null)

@@ -20,13 +20,34 @@ namespace Prn212
     {
         private User _currentUser;
 
+        private Prn212Context _context;
+
         public ViewRegistration(User user)
         {
             InitializeComponent();
+            _context = new Prn212Context();
             _currentUser = user;
             cbStatus.SelectedIndex = 0;
             LoadRegistrations("All", null, null, null, null);
             CheckRole();
+        }
+
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtSearch.Text == "Nhập số CCCD/CMND")
+            {
+                txtSearch.Text = "";
+                txtSearch.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void txtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.Text = "Nhập số CCCD/CMND";
+                txtSearch.Foreground = new SolidColorBrush(Colors.Gray);
+            }
         }
 
         private void LoadRegistrations(string status = null, DateTime? startDate = null, DateTime? endDate = null, DateTime? startDateApproval = null, DateTime? endDateApproval = null)
@@ -90,6 +111,18 @@ namespace Prn212
             if (_currentUser.Role == "Police")
             {
                 btnAddRegistration.Visibility = Visibility.Collapsed;
+                borderSearch.Visibility = Visibility.Visible;
+            }
+            if (_context.Registrations
+                .Where(r => r.UserId == _currentUser.UserId)
+                .Any(r => r.Status == "Pending")
+                ||
+                _context.Registrations
+                .Where(r => r.UserId == _currentUser.UserId)
+                .Any(r => r.RegistrationType == "Permanent")
+                )
+            {
+                btnAddRegistration.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -131,6 +164,12 @@ namespace Prn212
         {
             string status = (cbStatus.SelectedItem as ComboBoxItem)?.Content.ToString();
             string searchKey = txtSearch.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchKey) || searchKey == "Nhập số CCCD/CMND")
+            {
+                LoadRegistrations(null, null, null, null);
+                return;
+            }
 
             using (var context = new Prn212Context())
             {

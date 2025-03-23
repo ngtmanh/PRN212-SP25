@@ -26,7 +26,7 @@ create table RegistrationDetail (
 CREATE TABLE Registrations (
     RegistrationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
-    RegistrationType NVARCHAR(50) CHECK (RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay')) NOT NULL,
+    RegistrationType NVARCHAR(50) CHECK (RegistrationType IN ('Permanent', 'Temporary', 'Leave')) NOT NULL,
     RegistrationDetailId int references RegistrationDetail(RegistrationDetailId),    
     StartDate DATE DEFAULT GETDATE(),
     EndDate DATE NULL,

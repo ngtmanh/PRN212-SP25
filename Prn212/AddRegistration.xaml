@@ -34,7 +34,7 @@
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbRegistrationType" Margin="65,5,65,5" >
             <ComboBoxItem Content="Permanent" />
             <ComboBoxItem Content="Temporary" />
-            <ComboBoxItem Content="TemporaryStay" />
+            <ComboBoxItem Content="Leave" />
         </ComboBox>
 
         <!-- Mô tả -->
@@ -51,7 +51,7 @@
 
         <!-- Upfile dữ liệu -->
         <TextBlock Grid.Row="5" Grid.Column="0" Text="📝 Giấy tờ chứng minh nơi ở:" FontWeight="Bold" VerticalAlignment="Center"/>
-        <Button Grid.Row="6" Content="Upload File" Width="130" Height="30" Click="BtnUpload_Click"/>
+        <Button Grid.Row="6" Content="Upload File" Width="130" Height="30" Click="BtnUpload_Click" Background="#2196F3" Foreground="White"/>
         <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtFileName" Width="300" Margin="5" IsReadOnly="True" />
 
         <!-- Nút Submit -->

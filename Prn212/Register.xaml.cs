@@ -57,9 +57,19 @@ namespace Prn212
             _context.Users.Add(newUser);
             _context.SaveChanges();
 
+            var householdMember = new HouseholdMember
+            {
+                UserId = newUser.UserId,
+                HouseholdId = null, 
+                Relationship = "None"
+            };
+
+            _context.HouseholdMembers.Add(householdMember);
+            _context.SaveChanges();
+
             MessageBox.Show("Đăng ký thành công! Vui lòng đăng nhập.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            this.Close(); // Đóng màn hình đăng ký, quay lại Login
+            this.Close(); 
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

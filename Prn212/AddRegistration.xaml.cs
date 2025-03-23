@@ -33,6 +33,7 @@ namespace Prn212
             InitializeComponent();
             _currentUser = user;
             //LoadCbRegistrationType();
+            CheckingPermission();
         }
 
         //private void LoadCbRegistrationType()
@@ -51,6 +52,20 @@ namespace Prn212
         //        cbRegistrationType.Items.Add(type);
         //    }
         //}
+
+        private void CheckingPermission()
+        {
+            if (!context.Households.Any(h => h.HeadOfHouseholdId == _currentUser.UserId))
+            {
+                foreach (ComboBoxItem item in cbRegistrationType.Items)
+                {
+                    if (item.Content.ToString() == "Leave")
+                    {
+                        item.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+        }
 
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
