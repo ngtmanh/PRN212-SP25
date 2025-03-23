@@ -25,20 +25,19 @@ CREATE TABLE Households (
     FOREIGN KEY (HeadOfHouseholdID) REFERENCES Users(UserID)
 );
 
--- Tạo bảng RegistrationDetail
-CREATE TABLE RegistrationDetail (
-    RegistrationDetailId INT PRIMARY KEY IDENTITY(1,1),
-    Description NVARCHAR(MAX) NOT NULL,
-    VerifyingIdentity NVARCHAR(MAX) NULL,
-    VerifyingResidence NVARCHAR(MAX) NULL
+create table RegistrationDetail (
+	RegistrationDetailId int primary key identity(1,1),
+	Description NVARCHAR(max) NOT NULL,
+	VerifyingIdentity nvarchar(max) null,
+	ResidenceFileName nvarchar(max) null,
+	ResidenceFileType nvarchar(max) null,
+	ResidenceFileData VARBINARY(MAX) null
 );
-
--- Tạo bảng Registrations
 CREATE TABLE Registrations (
     RegistrationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
-    RegistrationType NVARCHAR(50) CHECK (RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay')) NOT NULL,
-    RegistrationDetailId INT REFERENCES RegistrationDetail(RegistrationDetailId),    
+    RegistrationType NVARCHAR(50) CHECK (RegistrationType IN ('Permanent', 'Temporary', 'Leave')) NOT NULL,
+    RegistrationDetailId int references RegistrationDetail(RegistrationDetailId),    
     StartDate DATE DEFAULT GETDATE(),
     EndDate DATE NULL,
     Status NVARCHAR(50) DEFAULT 'Pending' CHECK (Status IN ('Pending', 'Approved', 'Rejected')),
@@ -102,14 +101,6 @@ INSERT INTO Households (HeadOfHouseholdID, Address) VALUES
 (8, '505 Hoang Hoa Tham'),
 (9, '606 Le Duan'),
 (10, '707 Hai Ba Trung');
-
--- Chèn dữ liệu mẫu vào bảng RegistrationDetail
-INSERT INTO RegistrationDetail (Description, VerifyingIdentity, VerifyingResidence) VALUES
-('Permanent registration', 'ID123', 'Household123'),
-('Temporary registration', 'ID456', 'Household456'),
-('TemporaryStay registration', 'ID789', 'Household789'),
-('Permanent registration', 'ID101', 'Household101'),
-('Temporary registration', 'ID202', 'Household202');
 
 -- Chèn dữ liệu mẫu vào bảng Registrations
 INSERT INTO Registrations (UserID, RegistrationType, RegistrationDetailId, Status, ApprovedBy, Comments) VALUES

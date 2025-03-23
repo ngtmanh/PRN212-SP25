@@ -5,53 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="ViewRegistration" Height="450" Width="800">
-    <Grid>
+        Title="Danh sách đơn" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Registration Type:" />
-        <ComboBox x:Name="cbStatus" Grid.Row="0" Width="200" HorizontalAlignment="Left" 
-          SelectionChanged="CbStatus_SelectionChanged">
-            <ComboBoxItem Content="All" />
-            <ComboBoxItem Content="Pending" />
-            <ComboBoxItem Content="Rejected" />
-            <ComboBoxItem Content="Approved" />
-        </ComboBox>
+        <!-- Bộ lọc trạng thái -->
+        <Border Grid.Row="0" Padding="10" CornerRadius="8" Background="#F5F5F5" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Trạng thái đơn:" FontWeight="Bold" FontSize="14"/>
+                <ComboBox x:Name="cbStatus" Width="250" Height="auto" FontSize="14" Margin="10,0,0,0" SelectionChanged="CbStatus_SelectionChanged">
+                    <ComboBoxItem Content="All" />
+                    <ComboBoxItem Content="Pending" />
+                    <ComboBoxItem Content="Rejected" />
+                    <ComboBoxItem Content="Approved" />
+                </ComboBox>
+            </StackPanel>
+        </Border>
+
+        <!-- Ô sort theo ngày gửi đơn -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Ngày gửi từ: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="StartDatePicker" Width="150" Margin="5,0" SelectedDateChanged="StartDatePicker_SelectionChanged"/>
+            <TextBlock Text="Đến: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="EndDatePicker" Width="150" Margin="5,0" SelectedDateChanged="StartDatePicker_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Ô sort theo ngày duyệt đơn -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Ngày duyệt từ: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="StartDateApprovalPicker" Width="150" Margin="5,0" SelectedDateChanged="EndDatePicker_SelectionChanged"/>
+            <TextBlock Text="Đến: " FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <DatePicker x:Name="EndDateApprovalPicker" Width="150" Margin="5,0" SelectedDateChanged="EndDatePicker_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Ô tìm kiếm -->
+        <Border x:Name="borderSearch" Grid.Row="3" Padding="10" CornerRadius="8" Background="#F5F5F5" Margin="0,10,0,10" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox x:Name="txtSearch" Width="300" Height="40" Padding="10" FontSize="14" Background="White" Foreground="Gray" Text="Nhập số CCCD/CMND" 
+                 GotFocus="txtSearch_GotFocus" LostFocus="txtSearch_LostFocus"/>
+                <Button x:Name="btnSearch" Content="🔍 Tìm kiếm" Width="120" Height="40" FontSize="14" Margin="10,0,0,0" Background="#2196F3" Foreground="White" Click="BtnSearch_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Bảng dữ liệu -->
+        <Border Grid.Row="4" Padding="10" CornerRadius="8" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <DataGrid x:Name="registrationDataGrid" AutoGenerateColumns="False" FontSize="14" RowHeight="35"
+              HeadersVisibility="Column" AlternationCount="2" AlternatingRowBackground="#FAFAFA"
+              HorizontalAlignment="Stretch" ColumnWidth="*" Margin="0,10,0,10"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id đơn duyệt" Binding="{Binding RegistrationId}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Loại đơn" Binding="{Binding RegistrationType}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Người gửi" Binding="{Binding User.FullName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Số CCCD/CMND" Binding="{Binding RegistrationDetail.VerifyingIdentity}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Ngày gửi" Binding="{Binding StartDate}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Ngày duyệt" Binding="{Binding EndDate}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Duyệt bởi" Binding="{Binding ApprovedByNavigation.FullName}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
 
 
-        <TextBox x:Name="txtSearch" Grid.Row="1" Width="200" Height="30" Margin="10"/>
-        <TextBlock x:Name="txtCommentsPlaceholder"
-                   Grid.Row="1"
-               Text="Nhập số CCCD/CMND " 
-               Foreground="Gray" 
-               IsHitTestVisible="False" 
-               VerticalAlignment="Center" 
-               Margin="316,0,-311,0"
-               />
-        
-        <Button x:Name="btnSearch" Grid.Row="1" Content="Tìm kiếm" Width="100" Margin="514,5,186,5" Click="BtnSearch_Click"/>
-
-        <DataGrid x:Name="registrationDataGrid" Grid.Row="2" AutoGenerateColumns="False" Margin="10,10,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id đơn duyệt" Binding="{Binding RegistrationId}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Loại đơn" Binding="{Binding RegistrationType}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Người gửi" Binding="{Binding User.FullName}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Số CCCD/CMND" Binding="{Binding RegistrationDetail.VerifyingIdentity}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Ngày gửi" Binding="{Binding StartDate}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Duyệt bởi" Binding="{Binding ApprovedByNavigation.FullName}" Width="*" IsReadOnly="True"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
-            <Button x:Name="btnAddRegistration" Content="Thêm đơn" Width="100" Margin="5" Click="BtnAddRegistration_Click"/>
-            <Button x:Name="btnViewDetail" Content="Xem thông tin" Width="100" Margin="5" Click="BtnViewDetail_Click"/>
-            <Button x:Name="btnBack" Content="Quay lại" Width="100" Margin="5" Click="BtnBack_Click"/>
+        <!-- Các nút điều hướng -->
+        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="btnAddRegistration" Content="➕ Thêm đơn" Width="140" Height="45" FontSize="14" Margin="10" Background="#2196F3" Foreground="White" Click="BtnAddRegistration_Click"/>
+            <Button x:Name="btnViewDetail" Content="🔍 Xem thông tin" Width="140" Height="45" FontSize="14" Margin="10" Background="#2196F3" Foreground="White" Click="BtnViewDetail_Click"/>
+            <Button x:Name="btnBack" Content="🔙 Quay lại" Width="140" Height="45" FontSize="14" Margin="10" Background="#2196F3" Foreground="White" Click="BtnBack_Click"/>
         </StackPanel>
     </Grid>
+
+
 </Window>

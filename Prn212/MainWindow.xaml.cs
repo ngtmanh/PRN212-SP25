@@ -33,5 +33,14 @@ namespace Prn212
         {
             MainFrame.Content = new LeaderRigistration(_currentUser);
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown(); // Thoát chương trình
+            }
+        }
     }
 }

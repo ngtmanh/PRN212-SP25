@@ -5,26 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-        Title="AddRegistration" Height="450" Width="800">
-    <Grid>
-        <StackPanel Margin="20">
-            <TextBlock Text="Registration Type:" />
-            <ComboBox x:Name="cmbRegistrationType">
-                <ComboBoxItem Content="Permanent" />
-                <ComboBoxItem Content="Temporary" />
-                <ComboBoxItem Content="TemporaryStay" />
-            </ComboBox>
+        Title="Thêm đơn duyệt" Height="400" Width="600"
+        WindowStartupLocation="CenterScreen" Background="#F2F2F2">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <TextBlock Text="Description:" />
-            <TextBox x:Name="txtDescription" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Verifying Identity:" />
-            <TextBox x:Name="txtVerifyingIdentity" />
+        <!-- Tiêu đề -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" Foreground="#007ACC"
+                   Text="📄 Đơn duyệt" VerticalAlignment="Center" Margin="0,0,0,10"/>
 
-            <TextBlock Text="Verifying Residence:" />
-            <TextBox x:Name="txtVerifyingResidence" />
+        <!-- Loại đăng ký -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="📌 Loại đăng ký:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbRegistrationType" Margin="65,5,65,5" >
+            <ComboBoxItem Content="Permanent" />
+            <ComboBoxItem Content="Temporary" />
+            <ComboBoxItem Content="Leave" />
+        </ComboBox>
 
-            <Button Content="Submit" Click="BtnSubmit_Click" />
+        <!-- Mô tả -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="📝 Mô tả:" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDescription" Width="300" Margin="5"/>
+
+        <!-- CCCD/CMND -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="🆔 Số CCCD/CMND:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtVerifyingIdentity" Width="300" Margin="5"/>
+
+        <!-- Địa chỉ xác minh -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="📍 Địa chỉ xác minh:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtVerifyingResidence" Width="300" Margin="5"/>
+
+        <!-- Upfile dữ liệu -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="📝 Giấy tờ chứng minh nơi ở:" FontWeight="Bold" VerticalAlignment="Center"/>
+        <Button Grid.Row="6" Content="Upload File" Width="130" Height="30" Click="BtnUpload_Click" Background="#2196F3" Foreground="White"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtFileName" Width="300" Margin="5" IsReadOnly="True" />
+
+        <!-- Nút Submit -->
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="✔ Gửi" Width="100" Margin="5" Foreground="White" Background="#2ECC71" BorderThickness="0"
+FontSize="14" Cursor="Hand" Click="BtnSubmit_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="❌ Hủy" Width="100" Margin="5" Foreground="White" Background="#E74C3C" BorderThickness="0"
+FontSize="14" Cursor="Hand" Click="BtnCancel_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
+
     </Grid>
 </Window>

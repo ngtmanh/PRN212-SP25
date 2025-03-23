@@ -43,19 +43,35 @@ namespace Prn212
                 userToUpdate.Email = txtEmail.Text;
                 userToUpdate.Address = txtAddress.Text;
 
+                if (!string.IsNullOrEmpty(txtOldPassword.Password) && !txtOldPassword.Password.Equals(userToUpdate.Password))
+                {
+                    MessageBox.Show("Mật khẩu hiện tại sai! Vui lòng thử lại", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!string.IsNullOrEmpty(txtPassword.Password) && !string.IsNullOrEmpty(txtRePassword.Password) && !txtPassword.Password.Equals(txtRePassword.Password))
+                {
+                    MessageBox.Show("Mật khẩu nhập lại không đúng! Vui lòng thử lại", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 if (!string.IsNullOrEmpty(txtPassword.Password))
                 {
-                    userToUpdate.Password = txtPassword.Password; 
+                    userToUpdate.Password = txtPassword.Password;
                 }
 
                 _context.SaveChanges();
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                CitizenWindow citizenWindow = new CitizenWindow(_currentUser);
+                citizenWindow.Show();
+                this.Close();
             }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

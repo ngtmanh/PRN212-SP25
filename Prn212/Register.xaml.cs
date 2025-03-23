@@ -30,8 +30,14 @@ namespace Prn212
             string email = txtEmail.Text;
             string password = txtPassword.Password;
             string address = txtAddress.Text;
+            string repassword = txtRePassword.Password;
 
-            
+            if (!password.Equals(repassword))
+            {
+                MessageBox.Show("Mật khẩu xác thực không đúng, vui lòng thử lại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (_context.Users.Any(u => u.Email == email))
             {
                 MessageBox.Show("Email đã tồn tại, vui lòng chọn email khác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -51,9 +57,19 @@ namespace Prn212
             _context.Users.Add(newUser);
             _context.SaveChanges();
 
+            var householdMember = new HouseholdMember
+            {
+                UserId = newUser.UserId,
+                HouseholdId = null, 
+                Relationship = "None"
+            };
+
+            _context.HouseholdMembers.Add(householdMember);
+            _context.SaveChanges();
+
             MessageBox.Show("Đăng ký thành công! Vui lòng đăng nhập.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            this.Close(); // Đóng màn hình đăng ký, quay lại Login
+            this.Close(); 
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

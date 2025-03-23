@@ -29,6 +29,7 @@ namespace Prn212
         {
             CitizenProfile profileWindow = new CitizenProfile(_currentUser);
             profileWindow.ShowDialog();
+            this.Close();
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -44,6 +45,11 @@ namespace Prn212
             ViewRegistration viewRegistration = new ViewRegistration(_currentUser);
             viewRegistration.Show();
             this.Close();
+        }
+        private void BtnHouseHoldDetail_Click(object sender, RoutedEventArgs e)
+        {
+            CitizenHouseHoldDetail houseHoldDetail = new CitizenHouseHoldDetail(_currentUser);
+            houseHoldDetail.ShowDialog();
         }
     }
 }

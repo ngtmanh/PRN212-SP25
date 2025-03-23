@@ -32,58 +32,73 @@ namespace Prn212
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            string userIdText = txtUserId.Text;
+            string fullnameText = txtFullname.Text;
             string relationText = txtRelation.Text;
+            int countEmail = _context.Users.Count();
+            string newEmail = $"user{countEmail}@gmail.com";
 
-            if (validate(userIdText, relationText, out int userId))
+            //if (validate(fullnameText, relationText, out int userId))
+            //{
+            var newUser = new User
             {
-                var houseHoldMember = new HouseholdMember
-                {
-                    HouseholdId = houseHoldId,
-                    UserId = userId,
-                    Relationship = relationText
-                };
+                FullName = fullnameText,
+                Email = newEmail,
+                Password = "default",
+                Role = "Citizen",
+                Address = _currentUser.Address,
+            };
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
 
-                _context.HouseholdMembers.Add(houseHoldMember);
-                _context.SaveChanges();
-                Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_SUCCESS, _context);
-
-
-                MessageBox.Show("Successfull");
-            }
-            else
+            var houseHoldMember = new HouseholdMember
             {
-                Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_FAIL, _context);
-            }
+                HouseholdId = houseHoldId,
+                UserId = newUser.UserId,
+                Relationship = relationText
+            };
+
+            _context.HouseholdMembers.Add(houseHoldMember);
+            _context.SaveChanges();
+            Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_SUCCESS, _context);
+
+
+            MessageBox.Show("Successfull");
+            this.Close();
+
+            //}
+            //else
+            //{
+            //    Resource.Resource.saveLog(_currentUser.UserId, Resource.ConstLog.HOUSE_HOLD_MEMBER_ADD_FAIL, _context);
+            //}
         }
 
-        private bool validate(string userIdText, string relationText, out int userId)
-        {
-            userId = 0;
+        //private bool validate(string fullnameText, string relationText, out int userId)
+        //{
+        //    userId = 0;
 
-            if (string.IsNullOrWhiteSpace(userIdText) || string.IsNullOrWhiteSpace(relationText))
-            {
-                MessageBox.Show("Please Input Data");
-                return false;
-            }
+        //    if (string.IsNullOrWhiteSpace(fullnameText) || string.IsNullOrWhiteSpace(relationText))
+        //    {
+        //        MessageBox.Show("Please Input Data");
+        //        return false;
+        //    }
 
-            if (!int.TryParse(userIdText, out userId))
-            {
-                MessageBox.Show("UserID is integer number");
-                
-                return false;
-            }
-            else
-            {
-                if (!checkUserId(userId))
-                {
-                    MessageBox.Show("UserID not found");
-                    return false;
-                }
-            }
+        //    if (!int.TryParse(fullnameText, out userId))
+        //    {
+        //        MessageBox.Show("UserID is integer number");
 
-            return true;
-        }
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        if (!checkUserId(userId))
+        //        {
+        //            MessageBox.Show("UserID not found");
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
 
         public bool checkUserId(int userId)
         {
@@ -91,7 +106,5 @@ namespace Prn212
             if (data.Count > 0) return true;
             else return false;
         }
-
-
     }
 }

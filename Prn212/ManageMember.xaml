@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prn212"
         mc:Ignorable="d"
-             Height="Auto"
+             Height="300"
              Width="Auto"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
@@ -26,6 +26,8 @@
                      Margin="5,0" />
             <Button Content="Tìm"
                     Width="75"
+                    Background="#2196F3" 
+                    Foreground="White"
                     Click="SearchButton_Click" />
             <Button  Margin="100 0 0 0" Content="Export" Width="70" HorizontalAlignment="Right"
                      Click="Button_Click" />
@@ -33,25 +35,28 @@
 
         <!-- DataGrid for Residents -->
         <DataGrid x:Name="ResidentsDataGrid"
-                  AutoGenerateColumns="False"
+                    AutoGenerateColumns="False"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    CanUserAddRows="false"
                   Grid.Row="1"
                   Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
                                     Binding="{Binding MemberId}"
                                     Width="50" />
-                <DataGridTextColumn Header="Full Name"
+                <DataGridTextColumn Header="Họ và tên"
                                     Binding="{Binding User.FullName}"
-                                    Width="100" />
-                <DataGridTextColumn Header="Address"
+                                    Width="*" />
+                <DataGridTextColumn Header="Địa chỉ"
                                     Binding="{Binding User.Address}"
-                                    Width="100" />
-                <DataGridTextColumn Header="Head of household"
+                                    Width="*" />
+                <DataGridTextColumn Header="Chủ hộ"
                                     Binding="{Binding User.FullName}"
-                                    Width="150" />
-                <DataGridTextColumn Header="Relationship"
+                                    Width="*" />
+                <DataGridTextColumn Header="Thành viên"
                                     Binding="{Binding Relationship}"
-                                    Width="150" />
+                                    Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -60,17 +65,27 @@
                     Grid.Row="2"
                     HorizontalAlignment="Center"
                     Margin="10">
-            <Button Content="Add"
+            <Button Content="Thêm thành viên"
                     Width="100"
-                    Margin="5"
+                    Height="40"
+                    Margin="10"  
+                    Background="#2196F3" 
+                    Foreground="White"
+                    FontSize="13"
                     Click="AddButton_Click" />
-            <Button Content="Update"
+            <Button Content="Xem chi tiết"
                     Width="100"
-                    Margin="5"
-                    Click="UpdateButton_Click" />
-            <Button Content="Delete"
+                    Margin="10" 
+                    Foreground="White"
+                    Background="#2ECC71"
+                    FontSize="13"
+                    Click="ButtonView_Click" />
+            <Button Content="Xóa"
                     Width="100"
-                    Margin="5"
+                    Margin="10"
+                    Foreground="White"
+                    Background="#E74C3C"
+                    FontSize="13"
                     Click="DeleteButton_Click" />
         </StackPanel>
     </Grid>
