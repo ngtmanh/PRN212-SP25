@@ -1,3 +1,12 @@
+﻿-- Tạo cơ sở dữ liệu
+CREATE DATABASE PRN212;
+GO
+
+-- Sử dụng cơ sở dữ liệu vừa tạo
+USE PRN212;
+GO
+
+-- Tạo bảng Users
 CREATE TABLE Users (
     UserID INT PRIMARY KEY IDENTITY(1,1),
     FullName NVARCHAR(100) NOT NULL,
@@ -7,6 +16,7 @@ CREATE TABLE Users (
     Address NVARCHAR(MAX) NOT NULL
 );
 
+-- Tạo bảng Households
 CREATE TABLE Households (
     HouseholdID INT PRIMARY KEY IDENTITY(1,1),
     HeadOfHouseholdID INT,
@@ -37,6 +47,7 @@ CREATE TABLE Registrations (
     FOREIGN KEY (ApprovedBy) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng HouseholdMembers
 CREATE TABLE HouseholdMembers (
     MemberID INT PRIMARY KEY IDENTITY(1,1),
     HouseholdID INT,
@@ -46,6 +57,7 @@ CREATE TABLE HouseholdMembers (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng Notifications
 CREATE TABLE Notifications (
     NotificationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
@@ -55,6 +67,7 @@ CREATE TABLE Notifications (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng Logs
 CREATE TABLE Logs (
     LogID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
@@ -62,3 +75,50 @@ CREATE TABLE Logs (
     Timestamp DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
+
+-- Chèn dữ liệu mẫu vào bảng Users
+INSERT INTO Users (FullName, Email, Password, Role, Address) VALUES
+('Nguyen Van A', 'nguyenvana@example.com', 'hashed_password', 'Citizen', '123 Nguyen Trai'),
+('Tran Thi B', 'tranthib@example.com', 'hashed_password', 'AreaLeader', '456 Le Loi'),
+('Le Van C', 'levanc@example.com', 'hashed_password', 'Police', '789 Tran Hung Dao'),
+('Pham Van D', 'phamvand@example.com', 'hashed_password', 'Citizen', '101 Bach Mai'),
+('Hoang Thi E', 'hoangthie@example.com', 'hashed_password', 'Citizen', '202 Kim Ma'),
+('Nguyen Van F', 'nguyenvanf@example.com', 'hashed_password', 'Citizen', '303 Tran Phu'),
+('Tran Thi G', 'tranthig@example.com', 'hashed_password', 'Police', '404 Ba Trieu'),
+('Le Van H', 'levanh@example.com', 'hashed_password', 'AreaLeader', '505 Hoang Hoa Tham'),
+('Pham Thi I', 'phamthii@example.com', 'hashed_password', 'Citizen', '606 Le Duan'),
+('Hoang Van J', 'hoangvanj@example.com', 'hashed_password', 'Citizen', '707 Hai Ba Trung');
+
+-- Chèn dữ liệu mẫu vào bảng Households
+INSERT INTO Households (HeadOfHouseholdID, Address) VALUES
+(1, '123 Nguyen Trai'),
+(2, '456 Le Loi'),
+(3, '789 Tran Hung Dao'),
+(4, '101 Bach Mai'),
+(5, '202 Kim Ma'),
+(6, '303 Tran Phu'),
+(7, '404 Ba Trieu'),
+(8, '505 Hoang Hoa Tham'),
+(9, '606 Le Duan'),
+(10, '707 Hai Ba Trung');
+
+-- Chèn dữ liệu mẫu vào bảng Registrations
+INSERT INTO Registrations (UserID, RegistrationType, RegistrationDetailId, Status, ApprovedBy, Comments) VALUES
+(1, 'Permanent', 1, 'Approved', 2, 'Verified'),
+(2, 'Temporary', 2, 'Pending', NULL, NULL),
+(3, 'TemporaryStay', 3, 'Rejected', 1, 'Invalid documents'),
+(4, 'Permanent', 4, 'Approved', 3, 'All good'),
+(5, 'Temporary', 5, 'Pending', NULL, 'Waiting for approval');
+
+-- Chèn dữ liệu mẫu vào bảng HouseholdMembers
+INSERT INTO HouseholdMembers (HouseholdID, UserID, Relationship) VALUES
+(1, 1, 'Head'),
+(2, 2, 'Head'),
+(3, 3, 'Head'),
+(4, 4, 'Head'),
+(5, 5, 'Head'),
+(6, 6, 'Head'),
+(7, 7, 'Head'),
+(8, 8, 'Head'),
+(9, 9, 'Head'),
+(10, 10, 'Head');
