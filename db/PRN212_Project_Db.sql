@@ -1,3 +1,12 @@
+﻿-- Tạo cơ sở dữ liệu
+CREATE DATABASE PRN212;
+GO
+
+-- Sử dụng cơ sở dữ liệu vừa tạo
+USE PRN212;
+GO
+
+-- Tạo bảng Users
 CREATE TABLE Users (
     UserID INT PRIMARY KEY IDENTITY(1,1),
     FullName NVARCHAR(100) NOT NULL,
@@ -7,6 +16,7 @@ CREATE TABLE Users (
     Address NVARCHAR(MAX) NOT NULL
 );
 
+-- Tạo bảng Households
 CREATE TABLE Households (
     HouseholdID INT PRIMARY KEY IDENTITY(1,1),
     HeadOfHouseholdID INT,
@@ -15,18 +25,20 @@ CREATE TABLE Households (
     FOREIGN KEY (HeadOfHouseholdID) REFERENCES Users(UserID)
 );
 
-create table RegistrationDetail (
-	RegistrationDetailId int primary key identity(1,1),
-	Description NVARCHAR(max) NOT NULL,
-	VerifyingIdentity nvarchar(max) null,
-	VerifyingResidence nvarchar(max) null
-)
+-- Tạo bảng RegistrationDetail
+CREATE TABLE RegistrationDetail (
+    RegistrationDetailId INT PRIMARY KEY IDENTITY(1,1),
+    Description NVARCHAR(MAX) NOT NULL,
+    VerifyingIdentity NVARCHAR(MAX) NULL,
+    VerifyingResidence NVARCHAR(MAX) NULL
+);
 
+-- Tạo bảng Registrations
 CREATE TABLE Registrations (
     RegistrationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
     RegistrationType NVARCHAR(50) CHECK (RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay')) NOT NULL,
-    RegistrationDetailId int references RegistrationDetail(RegistrationDetailId),    
+    RegistrationDetailId INT REFERENCES RegistrationDetail(RegistrationDetailId),    
     StartDate DATE DEFAULT GETDATE(),
     EndDate DATE NULL,
     Status NVARCHAR(50) DEFAULT 'Pending' CHECK (Status IN ('Pending', 'Approved', 'Rejected')),
@@ -36,6 +48,7 @@ CREATE TABLE Registrations (
     FOREIGN KEY (ApprovedBy) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng HouseholdMembers
 CREATE TABLE HouseholdMembers (
     MemberID INT PRIMARY KEY IDENTITY(1,1),
     HouseholdID INT,
@@ -45,6 +58,7 @@ CREATE TABLE HouseholdMembers (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng Notifications
 CREATE TABLE Notifications (
     NotificationID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
@@ -54,6 +68,7 @@ CREATE TABLE Notifications (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- Tạo bảng Logs
 CREATE TABLE Logs (
     LogID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT,
@@ -62,63 +77,57 @@ CREATE TABLE Logs (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
--- Insert Users
+-- Chèn dữ liệu mẫu vào bảng Users
 INSERT INTO Users (FullName, Email, Password, Role, Address) VALUES
-('Nguyen Van A', 'a@example.com', 'hashed_password1', 'Citizen', '123 Street, City'),
-('Tran Thi B', 'b@example.com', 'hashed_password2', 'Citizen', '456 Street, City'),
-('Le Van C', 'c@example.com', 'hashed_password3', 'AreaLeader', '789 Street, City'),
-('Pham Thi D', 'd@example.com', 'hashed_password4', 'Police', '101 Street, City'),
-('Hoang Van E', 'e@example.com', 'hashed_password5', 'Citizen', '202 Street, City'),
-('Nguyen Thi F', 'f@example.com', 'hashed_password6', 'Citizen', '303 Street, City'),
-('Tran Van G', 'g@example.com', 'hashed_password7', 'AreaLeader', '404 Street, City'),
-('Le Thi H', 'h@example.com', 'hashed_password8', 'Police', '505 Street, City'),
-('Pham Van I', 'i@example.com', 'hashed_password9', 'Citizen', '606 Street, City'),
-('Hoang Thi J', 'j@example.com', 'hashed_password10', 'Citizen', '707 Street, City');
+('Nguyen Van A', 'nguyenvana@example.com', 'hashed_password', 'Citizen', '123 Nguyen Trai'),
+('Tran Thi B', 'tranthib@example.com', 'hashed_password', 'AreaLeader', '456 Le Loi'),
+('Le Van C', 'levanc@example.com', 'hashed_password', 'Police', '789 Tran Hung Dao'),
+('Pham Van D', 'phamvand@example.com', 'hashed_password', 'Citizen', '101 Bach Mai'),
+('Hoang Thi E', 'hoangthie@example.com', 'hashed_password', 'Citizen', '202 Kim Ma'),
+('Nguyen Van F', 'nguyenvanf@example.com', 'hashed_password', 'Citizen', '303 Tran Phu'),
+('Tran Thi G', 'tranthig@example.com', 'hashed_password', 'Police', '404 Ba Trieu'),
+('Le Van H', 'levanh@example.com', 'hashed_password', 'AreaLeader', '505 Hoang Hoa Tham'),
+('Pham Thi I', 'phamthii@example.com', 'hashed_password', 'Citizen', '606 Le Duan'),
+('Hoang Van J', 'hoangvanj@example.com', 'hashed_password', 'Citizen', '707 Hai Ba Trung');
 
--- Insert Households
+-- Chèn dữ liệu mẫu vào bảng Households
 INSERT INTO Households (HeadOfHouseholdID, Address) VALUES
-(1, '123 Street, City'),
-(2, '456 Street, City'),
-(5, '202 Street, City'),
-(6, '303 Street, City'),
-(9, '606 Street, City');
+(1, '123 Nguyen Trai'),
+(2, '456 Le Loi'),
+(3, '789 Tran Hung Dao'),
+(4, '101 Bach Mai'),
+(5, '202 Kim Ma'),
+(6, '303 Tran Phu'),
+(7, '404 Ba Trieu'),
+(8, '505 Hoang Hoa Tham'),
+(9, '606 Le Duan'),
+(10, '707 Hai Ba Trung');
 
--- Insert RegistrationDetail
+-- Chèn dữ liệu mẫu vào bảng RegistrationDetail
 INSERT INTO RegistrationDetail (Description, VerifyingIdentity, VerifyingResidence) VALUES
-('Permanent residence registration', 'ID12345', 'Household123'),
-('Temporary residence registration', 'ID67890', 'Household456'),
-('Temporary stay registration', 'ID54321', 'Household789'),
-('Change of residence', 'ID98765', 'Household101'),
-('New household registration', 'ID13579', 'Household202');
+('Permanent registration', 'ID123', 'Household123'),
+('Temporary registration', 'ID456', 'Household456'),
+('TemporaryStay registration', 'ID789', 'Household789'),
+('Permanent registration', 'ID101', 'Household101'),
+('Temporary registration', 'ID202', 'Household202');
 
--- Insert Registrations
-INSERT INTO Registrations (UserID, RegistrationType, RegistrationDetailId, StartDate, Status, ApprovedBy, Comments) VALUES
-(1, 'Permanent', 1, '2024-01-01', 'Approved', 3, 'Verified'),
-(2, 'Temporary', 2, '2024-02-01', 'Pending', NULL, NULL),
-(3, 'TemporaryStay', 3, '2024-03-01', 'Rejected', 4, 'Missing documents'),
-(4, 'Permanent', 4, '2024-04-01', 'Approved', 3, 'All clear'),
-(5, 'TemporaryStay', 5, '2024-05-01', 'Pending', NULL, NULL);
+-- Chèn dữ liệu mẫu vào bảng Registrations
+INSERT INTO Registrations (UserID, RegistrationType, RegistrationDetailId, Status, ApprovedBy, Comments) VALUES
+(1, 'Permanent', 1, 'Approved', 2, 'Verified'),
+(2, 'Temporary', 2, 'Pending', NULL, NULL),
+(3, 'TemporaryStay', 3, 'Rejected', 1, 'Invalid documents'),
+(4, 'Permanent', 4, 'Approved', 3, 'All good'),
+(5, 'Temporary', 5, 'Pending', NULL, 'Waiting for approval');
 
--- Insert HouseholdMembers
+-- Chèn dữ liệu mẫu vào bảng HouseholdMembers
 INSERT INTO HouseholdMembers (HouseholdID, UserID, Relationship) VALUES
 (1, 1, 'Head'),
-(1, 2, 'Spouse'),
-(2, 5, 'Head'),
-(3, 6, 'Head'),
-(3, 7, 'Child');
-
--- Insert Notifications
-INSERT INTO Notifications (UserID, Message, SentDate, IsRead) VALUES
-(1, 'Your registration has been approved.', '2025-03-23 10:00:00', 1),
-(2, 'Your registration is pending.', '2025-03-23 10:05:00', 0),
-(3, 'Your registration has been rejected.', '2025-03-23 10:10:00', 1),
-(4, 'Your document verification is complete.', '2025-03-23 10:15:00', 0),
-(5, 'Please update your registration details.', '2025-03-23 10:20:00', 0);
-
--- Insert Logs
-INSERT INTO Logs (UserID, Action, Timestamp) VALUES
-(1, 'Logged in', '2025-03-23 08:00:00'),
-(2, 'Updated profile', '2025-03-23 08:30:00'),
-(3, 'Submitted registration', '2025-03-23 09:00:00'),
-(4, 'Approved registration', '2025-03-23 09:30:00'),
-(5, 'Logged out', '2025-03-23 10:00:00');
+(2, 2, 'Head'),
+(3, 3, 'Head'),
+(4, 4, 'Head'),
+(5, 5, 'Head'),
+(6, 6, 'Head'),
+(7, 7, 'Head'),
+(8, 8, 'Head'),
+(9, 9, 'Head'),
+(10, 10, 'Head');
