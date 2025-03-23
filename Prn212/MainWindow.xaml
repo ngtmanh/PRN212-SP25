@@ -52,10 +52,11 @@
                         Padding="10"
                         FontSize="14"
                         Click="Button_Click" />
-                <Button Content="📝 Đăng ký trực tuyến"
+                <Button Content="📝 Đơn đăng ký trực tuyến"
                         Margin="0 5"
                         Padding="10"
-                        FontSize="14" />
+                        FontSize="14"
+                        Click="Button_Click_1" />
                 <Button Content="✅ Xác nhận và Phê duyệt"
                         Margin="0 5"
                         Padding="10"

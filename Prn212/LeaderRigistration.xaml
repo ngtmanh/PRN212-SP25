@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="Prn212.LeaderRigistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prn212"
+             mc:Ignorable="d"
+             Height="Auto"
+             Width="Auto"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="900"/>
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="registrationDataGrid"
+                  AutoGenerateColumns="False"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="10" Grid.Column="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Registration Type"
+                                    Binding="{Binding RegistrationType}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Start Date"
+                                    Binding="{Binding StartDate}"
+                                    Width="*" />
+                <DataGridTextColumn Header="End Date"
+                                    Binding="{Binding EndDate}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Status"
+                                    Binding="{Binding Status}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Approved By"
+                                    Binding="{Binding ApprovedBy}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Comments"
+                                    Binding="{Binding Comments}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Description"
+                                    Binding="{Binding RegistrationDetail.Description}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Registration Type"
+                       Width="100"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding RegistrationType}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Start Date"
+                       Width="100"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding StartDate}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="End Date"
+                       Width="100"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding EndDate}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Approved By"
+                       Width="100"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding Status}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Status"
+                       Width="100"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding ApprovedBy}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Comment"
+                       Width="100"
+                       Height="50"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding Comments}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Description"
+                       Width="100"
+                       Height="50"
+                       Margin="0 0 10 0" />
+                <TextBox Width="175"
+                         Text="{Binding RegistrationDetail.Description}"
+                         DataContext="{Binding SelectedItem , ElementName= registrationDataGrid}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
