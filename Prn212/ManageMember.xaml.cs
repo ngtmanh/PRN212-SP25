@@ -120,10 +120,11 @@ namespace Prn212
 
                         var headOfHousehold = _context.Users
                             .FirstOrDefault(u => u.UserId == selectItem.UserId);
-                        int count = _context.Users.Count();
+                        string uniqueId = Guid.NewGuid().ToString("N").Substring(0, 8);
+                        string newEmail = $"user{uniqueId}@gmail.com";
                         if (headOfHousehold != null)
                         {
-                            headOfHousehold.Email = $"user{count}@gmail.com";
+                            headOfHousehold.Email = newEmail;
                             headOfHousehold.Password = "default" ;
                         }                       
                         _context.HouseholdMembers.RemoveRange(householdMembers); 
