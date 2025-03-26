@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\SPRING25\\PRN212\\PRN212-SP25\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\resetpassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\resetpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\resetpasswordafterverifyingotp.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpasswordafterverifyingotp.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +19,8 @@
       "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpasswordafterverifyingotp.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\resetpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpassword.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\resetpassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|solutionrelative:prn212\\resetpassword.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{35F30B64-EA4E-40C6-98A9-6E29BE9D8145}|Prn212\\Prn212.csproj|e:\\spring25\\prn212\\prn212-sp25\\prn212\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -122,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 171,
-          "SelectedChildIndex": 108,
+          "SelectedChildIndex": 107,
           "Children": [
             {
               "$type": "Bookmark",
@@ -554,26 +554,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "ResetPassword.xaml.cs",
               "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPassword.xaml.cs",
               "RelativeDocumentMoniker": "Prn212\\ResetPassword.xaml.cs",
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPassword.xaml.cs",
               "RelativeToolTip": "Prn212\\ResetPassword.xaml.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAAwFYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-26T07:26:46.977Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ResetPasswordAfterVerifyingOtp.xaml.cs",
               "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPasswordAfterVerifyingOtp.xaml.cs",
               "RelativeDocumentMoniker": "Prn212\\ResetPasswordAfterVerifyingOtp.xaml.cs",
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPasswordAfterVerifyingOtp.xaml.cs",
               "RelativeToolTip": "Prn212\\ResetPasswordAfterVerifyingOtp.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-26T07:42:36.899Z",
               "EditorCaption": ""
@@ -588,8 +588,7 @@
               "RelativeToolTip": "Prn212\\login.xaml.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAvwEwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T04:26:50.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T04:26:50.177Z"
             },
             {
               "$type": "Document",
@@ -601,12 +600,11 @@
               "RelativeToolTip": "Prn212\\CitizenProfile.xaml.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAxwEIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T08:57:05.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T08:57:05.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ResetPassword.xaml",
               "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPassword.xaml",
               "RelativeDocumentMoniker": "Prn212\\ResetPassword.xaml",
@@ -626,32 +624,29 @@
               "RelativeToolTip": "Prn212\\CitizenWindow.xaml.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T10:24:21.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T10:24:21.745Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ResetPasswordAfterVerifyingOtp.xaml",
               "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPasswordAfterVerifyingOtp.xaml",
               "RelativeDocumentMoniker": "Prn212\\ResetPasswordAfterVerifyingOtp.xaml",
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\ResetPasswordAfterVerifyingOtp.xaml",
               "RelativeToolTip": "Prn212\\ResetPasswordAfterVerifyingOtp.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-26T07:41:38.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T07:41:38.47Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Login.xaml",
               "DocumentMoniker": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Login.xaml",
               "RelativeDocumentMoniker": "Prn212\\Login.xaml",
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Login.xaml",
               "RelativeToolTip": "Prn212\\Login.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T04:24:18.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T04:24:18.936Z"
             },
             {
               "$type": "Document",
@@ -663,8 +658,7 @@
               "RelativeToolTip": "Prn212\\ManageMember.xaml.cs",
               "ViewState": "AgIAAGQAAAAAAAAAAAAhwHsAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T06:28:07.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T06:28:07.117Z"
             },
             {
               "$type": "Document",
@@ -675,8 +669,7 @@
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenProfile.xaml",
               "RelativeToolTip": "Prn212\\CitizenProfile.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-23T10:23:04.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T10:23:04.712Z"
             },
             {
               "$type": "Document",
@@ -687,8 +680,7 @@
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\PoliceWindow.xaml",
               "RelativeToolTip": "Prn212\\PoliceWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T05:04:17.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T05:04:17.001Z"
             },
             {
               "$type": "Document",
@@ -699,8 +691,7 @@
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\Register.xaml",
               "RelativeToolTip": "Prn212\\Register.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-26T07:25:33.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T07:25:33.606Z"
             },
             {
               "$type": "Document",
@@ -712,8 +703,7 @@
               "RelativeToolTip": "Prn212\\ViewRegistrationDetail.xaml.cs",
               "ViewState": "AgIAAAsBAAAAAAAAAAAkwC4BAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T10:05:38.097Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T10:05:38.097Z"
             },
             {
               "$type": "Document",
@@ -736,8 +726,7 @@
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\CitizenWindow.xaml",
               "RelativeToolTip": "Prn212\\CitizenWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T04:10:19.566Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T04:10:19.566Z"
             },
             {
               "$type": "Document",
@@ -875,8 +864,7 @@
               "ToolTip": "E:\\SPRING25\\PRN212\\PRN212-SP25\\Prn212\\MainWindow.xaml",
               "RelativeToolTip": "Prn212\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-23T07:01:15.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T07:01:15.715Z"
             },
             {
               "$type": "Document",

@@ -52,7 +52,7 @@ namespace Prn212
 
         private void BtnVerifyOtp_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            if (string.IsNullOrWhiteSpace(txtOtp.Text))
             {
                 MessageBox.Show("Vui lòng nhập mã OTP!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -64,7 +64,7 @@ namespace Prn212
                 return;
             }
 
-            if (txtPassword.Password == generatedOTP)
+            if (txtOtp.Text == generatedOTP)
             {
                 MessageBox.Show("Xác nhận thành công! Bây giờ bạn có thể đặt lại mật khẩu.", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 var user = context.Users.FirstOrDefault(u => u.Email == txtEmail.Text);
