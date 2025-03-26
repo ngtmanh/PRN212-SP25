@@ -23,13 +23,20 @@ namespace Prn212
         {
             InitializeComponent();
             _currentUser = user;
+            LoadImage();
+        }
+
+        private void LoadImage()
+        {
+            ImageBrush brush = new ImageBrush();
+            brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Images/building.jpg"));
+            this.Background = brush;
         }
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
             CitizenProfile profileWindow = new CitizenProfile(_currentUser);
-            profileWindow.ShowDialog();
-            this.Close();
+            profileWindow.Show();
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)

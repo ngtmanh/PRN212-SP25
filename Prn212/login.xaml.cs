@@ -66,7 +66,15 @@ namespace Prn212
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             Register registerWindow = new Register(); 
-            registerWindow.ShowDialog(); 
+            registerWindow.Show(); 
+            this.Close();
+        }
+
+        private void BtnResetPassword_Click(object sender, RoutedEventArgs e)
+        {
+            ResetPassword resetPassword = new ResetPassword();
+            resetPassword.Show();
+            this.Close();
         }
     }
 }

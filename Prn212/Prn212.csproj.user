@@ -13,6 +13,12 @@
     <Compile Update="PoliceWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ResetPassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ResetPasswordAfterVerifyingOtp.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ViewRegistrationDetail.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +31,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PoliceWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ResetPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ResetPasswordAfterVerifyingOtp.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ViewRegistrationDetail.xaml">
