@@ -39,7 +39,9 @@
 
         <!-- Mô tả -->
         <TextBlock Grid.Row="2" Grid.Column="0" Text="📝 Mô tả:" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDescription" Width="300" Margin="5"/>
+        <TextBox Grid.Row="2" TextWrapping="Wrap" 
+         AcceptsReturn="True" 
+         VerticalScrollBarVisibility="Auto" Grid.Column="1" x:Name="txtDescription" Width="300" Margin="5"/>
 
         <!-- CCCD/CMND -->
         <TextBlock Grid.Row="3" Grid.Column="0" Text="🆔 Số CCCD/CMND:" FontWeight="Bold" VerticalAlignment="Center"/>

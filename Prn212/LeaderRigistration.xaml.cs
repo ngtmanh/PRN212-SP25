@@ -98,6 +98,7 @@ namespace Prn212
                     .Include(r => r.RegistrationDetail)
                     .Include(r => r.ApprovedByNavigation)
                     .Include(r => r.User)
+                    .Where(r => r.Status == "Approved")
                     .AsQueryable();
 
                 if (_currentUser.Role == "Citizen")

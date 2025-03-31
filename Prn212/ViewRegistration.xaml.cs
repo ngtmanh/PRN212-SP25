@@ -97,7 +97,7 @@ namespace Prn212
             if (registrationDataGrid.SelectedItem is Registration selectedRegistration)
             {
                 ViewRegistrationDetail detailWindow = new ViewRegistrationDetail(selectedRegistration, _currentUser);
-                detailWindow.ShowDialog();
+                detailWindow.Show();
                 this.Close();
             }
             else

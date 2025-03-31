@@ -89,36 +89,16 @@ INSERT INTO Users (FullName, Email, Password, Role, Address) VALUES
 ('Pham Thi I', 'phamthii@example.com', 'hashed_password', 'Citizen', '606 Le Duan'),
 ('Hoang Van J', 'hoangvanj@example.com', 'hashed_password', 'Citizen', '707 Hai Ba Trung');
 
--- Chèn dữ liệu mẫu vào bảng Households
-INSERT INTO Households (HeadOfHouseholdID, Address) VALUES
-(1, '123 Nguyen Trai'),
-(2, '456 Le Loi'),
-(3, '789 Tran Hung Dao'),
-(4, '101 Bach Mai'),
-(5, '202 Kim Ma'),
-(6, '303 Tran Phu'),
-(7, '404 Ba Trieu'),
-(8, '505 Hoang Hoa Tham'),
-(9, '606 Le Duan'),
-(10, '707 Hai Ba Trung');
-
--- Chèn dữ liệu mẫu vào bảng Registrations
-INSERT INTO Registrations (UserID, RegistrationType, RegistrationDetailId, Status, ApprovedBy, Comments) VALUES
-(1, 'Permanent', 1, 'Approved', 2, 'Verified'),
-(2, 'Temporary', 2, 'Pending', NULL, NULL),
-(3, 'TemporaryStay', 3, 'Rejected', 1, 'Invalid documents'),
-(4, 'Permanent', 4, 'Approved', 3, 'All good'),
-(5, 'Temporary', 5, 'Pending', NULL, 'Waiting for approval');
 
 -- Chèn dữ liệu mẫu vào bảng HouseholdMembers
 INSERT INTO HouseholdMembers (HouseholdID, UserID, Relationship) VALUES
-(1, 1, 'Head'),
-(2, 2, 'Head'),
-(3, 3, 'Head'),
-(4, 4, 'Head'),
-(5, 5, 'Head'),
-(6, 6, 'Head'),
-(7, 7, 'Head'),
-(8, 8, 'Head'),
-(9, 9, 'Head'),
-(10, 10, 'Head');
+(null, 1, 'None'),
+(null, 2, 'None'),
+(null, 3, 'None'),
+(null, 4, 'None'),
+(null, 5, 'None'),
+(null, 6, 'None'),
+(null, 7, 'None'),
+(null, 8, 'None'),
+(null, 9, 'None'),
+(null, 10, 'None');

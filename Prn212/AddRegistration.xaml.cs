@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using Prn212.Models;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Prn212
@@ -84,6 +85,20 @@ namespace Prn212
                 ResidenceFileType = _fileType,
                 ResidenceFileData = _fileData
             };
+
+
+            bool isDuplicate = context.RegistrationDetails
+                .Any(rd => rd.VerifyingIdentity == verifyingIdentity &&
+                           context.Registrations.Any(r => r.RegistrationDetailId == rd.RegistrationDetailId &&
+                                                          r.UserId != _currentUser.UserId));
+
+            if (isDuplicate)
+            {
+                MessageBox.Show("This verifying identity is already used by another user!");
+                return;
+            }
+
+
             context.RegistrationDetails.Add(registrationDetail);
             context.SaveChanges();
 
